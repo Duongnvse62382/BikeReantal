@@ -1,5 +1,6 @@
 package com.duongnv.bikerental;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,16 +10,23 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duongnv.bikerental.model.Account;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -92,7 +100,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
     class ViewPagerAdapter extends FragmentPagerAdapter {
 
 
@@ -135,6 +142,38 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
+
+
+
+    public boolean isServicesOK(){
+        Log.d(TAG, "isServicesOK: checking google services version");
+
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(HomeActivity.this);
+
+        if(available == ConnectionResult.SUCCESS){
+            //everything is fine and the user can make map requests
+            Log.d(TAG, "isServicesOK: Google Play Services is working");
+            return true;
+        }
+        else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            //an error occured but we can resolve it
+            Log.d(TAG, "isServicesOK: an error occured but we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(HomeActivity.this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }else{
+            Toast.makeText(this, "You can't make map requests", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
+    public void ClickToMapMotorbike(View view) {
+        if(isServicesOK()){
+            Intent intent = new Intent(HomeActivity.this, MapActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
 
 
 
