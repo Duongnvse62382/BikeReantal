@@ -53,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(3);
     }
 
-//    #B0ACAC
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
@@ -132,10 +131,6 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    public void ClickToEdit(View view) {
-        Intent intent = new Intent(this, EditProfileActivity.class);
-        startActivity(intent);
-    }
 
 
 

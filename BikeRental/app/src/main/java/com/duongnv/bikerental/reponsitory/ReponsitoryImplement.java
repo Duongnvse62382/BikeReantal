@@ -95,4 +95,41 @@ public class ReponsitoryImplement implements Reponsitory{
         });
 
     }
+
+    @Override
+    public void updateAccount(String username, String password, String fullname, String phonenumber, String email, String address, String birtday, final CallBackData<List<Account>> callBackData) {
+        ClientAPI clientAPI = new ClientAPI();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("Password", password);
+            jsonObject.put("FullName", fullname);
+            jsonObject.put("PhoneNumber", phonenumber);
+            jsonObject.put("Email", email);
+            jsonObject.put("Address", address);
+            jsonObject.put("BirthDay", birtday);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final RequestBody requestBody = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=urf-8"), jsonObject.toString());
+        Call<ResponseBody> bodyCall = clientAPI.resoService().updateAccount(username, requestBody);
+        bodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.code() == 200 & response.body()!=null){
+                    String result = null;
+                    try {
+                        result = response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                callBackData.onSuccessString("Update succsess!");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callBackData.onFail("Username not exits!");
+            }
+        });
+    }
 }

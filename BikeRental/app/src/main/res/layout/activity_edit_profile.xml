@@ -78,6 +78,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtUsername"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
@@ -175,6 +176,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+
                     android:layout_weight="8.5"
                     android:enabled="false"
                     android:id="@+id/editDate"

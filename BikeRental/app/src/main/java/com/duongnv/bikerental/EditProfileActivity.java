@@ -9,16 +9,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.duongnv.bikerental.model.Account;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class EditProfileActivity extends AppCompatActivity {
 
     private Button btnDatePicker;
     private EditText etDate;
     private int mYear, mMonth, mDay;
-    private EditText  edtPassword, edtConfirm, edtPhone, edtEmail;
+    private TextView textUsername;
+    private Account mAccount;
+    private EditText  edtPassword, edtConfirm, edtPhone, edtEmail, edtAddress, edtFullname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +36,12 @@ public class EditProfileActivity extends AppCompatActivity {
         edtConfirm = findViewById(R.id.editConfirm);
         edtPhone = findViewById(R.id.editPhone);
         edtEmail = findViewById(R.id.editEmail);
+        edtAddress = findViewById(R.id.editAddress);
+        textUsername = findViewById(R.id.txtUsername);
+        edtFullname = findViewById(R.id.editFullname);
+       viewAccount();
+
+
 
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +53,20 @@ public class EditProfileActivity extends AppCompatActivity {
                 getDatePick();
             }
         });
+
+    }
+
+    public void viewAccount(){
+
+        Bundle bundle = getIntent().getExtras();
+        mAccount = (Account) bundle.getSerializable("keyedit");
+        textUsername.setText("Username: "+ mAccount.getUsername() + "");
+        edtPassword.setText(mAccount.getPassword());
+        edtEmail.setText(mAccount.getEmail()+ "");
+        edtPhone.setText(mAccount.getPhonnumber());
+        edtAddress.setText(mAccount.getAddress());
+        edtFullname.setText(mAccount.getFullname());
+        etDate.setText(mAccount.getBrithdate());
 
     }
 
@@ -83,11 +110,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public boolean validConfirm(){
         String confirm = edtConfirm.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        if(confirm.isEmpty()){
-            edtConfirm.setError("ConfirmPassword Can't be blank!");
-            return false;
-        }
-        else if (!confirm.equals(password)){
+        if (!confirm.equals(password)){
             edtConfirm.setError("Confirm Password Wrong");
             return false;
         }

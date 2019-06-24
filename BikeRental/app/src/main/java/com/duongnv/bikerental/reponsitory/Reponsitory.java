@@ -9,6 +9,7 @@ public interface Reponsitory {
     //    void login(Context context, String username, String password, CallBackData<User> callBackData);
     void getAccount(CallBackData<List<Account>>callBackData);
     void registerAccount(String username, String password, String fullname, String phonenumber, String email, String address, String birtday, int role, CallBackData<List<Account>> callBackData);
+    void updateAccount(String username, String password, String fullname, String phonenumber, String email, String address, String birtday, CallBackData<List<Account>> callBackData);
 }
 
 // chứa các hàm mà các activity cần
