@@ -61,12 +61,13 @@ public class EditProfileActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         mAccount = (Account) bundle.getSerializable("keyedit");
         textUsername.setText("Username: "+ mAccount.getUsername() + "");
-        edtPassword.setText(mAccount.getPassword());
+        edtPassword.setText(mAccount.getPassword()+ "");
+        edtConfirm.setText(mAccount.getPassword()+"");
         edtEmail.setText(mAccount.getEmail()+ "");
-        edtPhone.setText(mAccount.getPhonnumber());
-        edtAddress.setText(mAccount.getAddress());
-        edtFullname.setText(mAccount.getFullname());
-        etDate.setText(mAccount.getBrithdate());
+        edtPhone.setText(mAccount.getPhonnumber()+ "");
+        edtAddress.setText(mAccount.getAddress()+"");
+        edtFullname.setText(mAccount.getFullname()+"");
+        etDate.setText(mAccount.getBrithdate()+"");
 
     }
 
@@ -91,6 +92,7 @@ public class EditProfileActivity extends AppCompatActivity {
         if(!validPasssrd() | !validConfirm() | !validPhone() | !validEmail()){
             return;
         }
+
         Toast.makeText(this, "Edit Success!", Toast.LENGTH_SHORT).show();
     }
 
@@ -110,7 +112,11 @@ public class EditProfileActivity extends AppCompatActivity {
     public boolean validConfirm(){
         String confirm = edtConfirm.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        if (!confirm.equals(password)){
+        if(password.isEmpty()){
+            edtPassword.setError("Confirm password Can't be blank!");
+            return false;
+        }
+        else if (!confirm.equals(password)){
             edtConfirm.setError("Confirm Password Wrong");
             return false;
         }

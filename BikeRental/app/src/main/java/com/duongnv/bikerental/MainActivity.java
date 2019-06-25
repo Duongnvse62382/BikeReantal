@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         }
     }
 
+
     @Override
     public void loginSS(List<Account> list) {
         Intent intent = new Intent(this, HomeActivity.class);
