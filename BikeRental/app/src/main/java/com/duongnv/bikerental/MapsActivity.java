@@ -17,12 +17,9 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.arlib.floatingsearchview.FloatingSearchView;
-import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,12 +36,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback{
 
 
     private ImageButton mGps;
     private EditText edtSearch;
-//    private FloatingSearchView edtSearch;
     private static final String TAG = "MapsActiviti";
     private boolean mLocationPremisstionsGranted = false;
 
@@ -129,6 +126,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
             init();
         }
+
     }
 
     private void getDeviceLocation(){
@@ -209,6 +207,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void hideSoftKeyBround(){
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
-
 
 }

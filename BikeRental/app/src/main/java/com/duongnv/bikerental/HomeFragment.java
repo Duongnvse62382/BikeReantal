@@ -18,6 +18,7 @@ public class HomeFragment extends Fragment {
 
 
     ImageButton imgMotorbike;
+    ImageButton imgScooter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.fragment_home, container, false);
         imgMotorbike = (ImageButton) view.findViewById(R.id.btnimMortobike);
+        imgScooter = (ImageButton) view.findViewById(R.id.imgScooter) ;
 
         imgMotorbike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +40,16 @@ public class HomeFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
+        imgScooter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getBaseContext(), BookBikeActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+
         return view;
     }
 

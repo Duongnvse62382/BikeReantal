@@ -12,10 +12,9 @@
     android:orientation="vertical">
     <LinearLayout
 
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/boder_bg"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_weight="5"
@@ -26,7 +25,7 @@
             <ImageButton
                 android:id="@+id/btnimMortobike"
                 android:layout_marginTop="10dp"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:background="@drawable/ps__button_logobike"
@@ -49,7 +48,7 @@
             <ImageButton
                 android:id="@+id/imgScooter"
                 android:layout_marginTop="10dp"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:background="@drawable/ps__button_logobike"
@@ -71,20 +70,82 @@
 
 
     </LinearLayout>
-    <!--<ScrollView-->
-        <!--android:layout_weight="8"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp">-->
+
+
+    <ScrollView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="8.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
         <LinearLayout
-            android:layout_weight="8"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/vietnammrb"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:weightSum="6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_weight="2"
+                    android:background="@drawable/ps__button_logobike"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="0dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="150dp"
+                    android:src="@drawable/vietnammrb"/>
+                <ImageButton
+                    android:layout_weight="2"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/ps__button_logobike"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="0dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="150dp"
+                    android:src="@drawable/banner4"/>
+
+                <ImageButton
+                    android:layout_weight="2"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/ps__button_logobike"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="0dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="150dp"
+                    android:src="@drawable/banner5"/>
+
+            </LinearLayout>
+
+
+            <ImageButton
+                android:background="@drawable/ps__button_logobike"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="100dp"
+                android:src="@drawable/banner2"/>
+            <ImageButton
+                android:background="@drawable/ps__button_logobike"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="100dp"
+                android:src="@drawable/banner"/>
+            <ImageButton
+            android:background="@drawable/ps__button_logobike"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_height="100dp"
+            android:src="@drawable/banner3"/>
 
         </LinearLayout>
 
-    <!--</ScrollView>-->
+
+    </ScrollView>
 
 </LinearLayout>
 

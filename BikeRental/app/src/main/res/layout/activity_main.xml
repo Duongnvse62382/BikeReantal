@@ -138,18 +138,19 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/loginFaceBook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"
-        android:background="#3F51B6"
-        android:drawableLeft="@drawable/iconfacebook"
-        android:gravity="center"
-        android:text="Login With Facebook"
-        android:textColor="#FfFfFf"/>
+    <com.facebook.login.widget.LoginButton
+    android:id="@+id/login_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="30dp"
+    android:background="#3F51B6"
+    android:drawableLeft="@drawable/iconfacebook"
+    android:gravity="center"
+    android:text="Login With Facebook"
+    android:textColor="#FfFfFf"/>
+
 
 
 </LinearLayout>

@@ -12,18 +12,20 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
+import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETACCOUNT;
+
 public interface Service {
-    @POST(ConfigAPI.Api.GETACCOUNT)
+    @POST(GETACCOUNT)
     Call<ResponseBody> registerAccount(
             @Body RequestBody requestBody
     );
 
 
-    @GET(ConfigAPI.Api.GETACCOUNT)
+    @GET(GETACCOUNT)
     Call<ResponseBody> getAccount(
 
     );
-    @PUT(ConfigAPI.Api.GETACCOUNT)
+    @PUT(GETACCOUNT)
     Call<ResponseBody> updateAccount(
             @Path("username") String username,
             @Body RequestBody requestBody

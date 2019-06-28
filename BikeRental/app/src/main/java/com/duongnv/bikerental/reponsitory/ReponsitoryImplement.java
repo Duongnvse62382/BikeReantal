@@ -28,7 +28,7 @@ public class ReponsitoryImplement implements Reponsitory{
         bodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if(response.code()==200 & response.body()!=null){
+                    if(response.code()==200 & response.body()!=null){
                     String result = null;
                     try {
                         result = response.body().string();

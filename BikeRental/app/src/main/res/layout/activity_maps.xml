@@ -59,15 +59,15 @@
     </RelativeLayout>
 
     <ImageButton
-        android:background="@drawable/circle_bt"
         android:id="@+id/ic_gps"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_below="@id/relayout1"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="492dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginTop="464dp"
+        android:layout_marginRight="25dp"
         android:layout_marginBottom="-50dp"
+        android:background="@drawable/circle_bt"
         android:src="@drawable/ic_gsp" />
 
     <!--<ImageView-->
@@ -79,5 +79,6 @@
         <!--android:layout_marginLeft="15dp"-->
         <!--android:id="@+id/ic_back"-->
         <!--android:src="@drawable/iconback"/>-->
+
 
 </RelativeLayout>

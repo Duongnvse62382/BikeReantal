@@ -28,6 +28,9 @@ public class AccountFragment extends Fragment {
     }
 
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,28 +40,22 @@ public class AccountFragment extends Fragment {
              textEmail = (TextView) view.findViewById(R.id.txtEmail);
              txtPhone = (TextView) view.findViewById(R.id.txtPhone);
              txtAddress = (TextView) view.findViewById(R.id.txtAddress);
-
              mAccountList = new ArrayList<>();
              mAccountList  =(List<Account>) getActivity().getIntent().getExtras().getSerializable("key");
-             txtFullname.setText(mAccountList.get(0).getFullname()+"");
-             textEmail.setText(mAccountList.get(0).getEmail()+ "");
-             txtPhone.setText(mAccountList.get(0).getPhonnumber());
-             txtAddress.setText(mAccountList.get(0).getAddress());
-
-             buttonEdit.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
-                     Intent intent = new Intent(getActivity().getBaseContext(),EditProfileActivity.class);
-                     Bundle bundle = new Bundle();
-                     bundle.putSerializable("keyedit",mAccountList.get(0));
-                     intent.putExtras(bundle);
-                     getActivity().startActivity(intent);
-                 }
-             });
-
-
-
-
+        txtFullname.setText(mAccountList.get(0).getFullname()+"");
+        textEmail.setText(mAccountList.get(0).getEmail()+ "");
+        txtPhone.setText(mAccountList.get(0).getPhonnumber());
+        txtAddress.setText(mAccountList.get(0).getAddress());
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getBaseContext(),EditProfileActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("keyedit",mAccountList.get(0));
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
+            }
+        });
              return view;
 
 

@@ -1,26 +1,31 @@
 package com.duongnv.bikerental;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.presenter.LoginAccountPresenter;
 import com.duongnv.bikerental.views.LoginAccountView;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoginAccountView {
-    Button btnLogin;
+    LoginButton btnLogin;
     private EditText edtUserName, edtPassword;
     private LoginAccountPresenter mloginAccountPresenter;
-
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +33,35 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         setContentView(R.layout.activity_main);
         edtUserName = findViewById(R.id.editUsername);
         edtPassword = findViewById(R.id.editPassword);
-        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin = findViewById(R.id.login_button);
+
+        callbackManager = CallbackManager.Factory.create();
+        btnLogin.setReadPermissions(Arrays.asList("email","public_profile"));
+
+        btnLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                    String token = loginResult.getAccessToken().getToken().toString();
+                System.out.println("token : " + token);
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                error.printStackTrace();
+            }
+        });
     }
 
-
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 
 
@@ -48,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         mloginAccountPresenter = new LoginAccountPresenter(this);
         mloginAccountPresenter.loginAccount();
         Toast.makeText(MainActivity.this,"Login success!",Toast.LENGTH_LONG).show();
+
     }
 
 
@@ -84,8 +114,9 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         Bundle bundle = new Bundle();
         bundle.putSerializable("key", (Serializable) list);
         intent.putExtras(bundle);
-        startActivity(intent);
         finish();
+        startActivity(intent);
+
     }
 
     @Override
