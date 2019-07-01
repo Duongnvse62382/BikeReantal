@@ -1,6 +1,7 @@
 package com.duongnv.bikerental.reponsitory;
 
 import com.duongnv.bikerental.model.Account;
+import com.duongnv.bikerental.model.Bike;
 import com.duongnv.bikerental.utils.CallBackData;
 import com.duongnv.bikerental.utils.ClientAPI;
 import com.google.gson.Gson;
@@ -131,5 +132,36 @@ public class ReponsitoryImplement implements Reponsitory{
                 callBackData.onFail("Username not exits!");
             }
         });
+    }
+
+    @Override
+    public void getBikeByStore(final CallBackData<List<Bike>> callBackData) {
+        ClientAPI clientAPI = new ClientAPI();
+        Call<ResponseBody> bodyCall = clientAPI.resoService().getBikeByStore();
+        bodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                if(response.code() == 200 & response.body() != null){
+                    try {
+                        result =  response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                Type collectionType = new TypeToken<List<Bike>>(){}.getType();
+                List<Bike> lcs = (List<Bike>) new Gson()
+                        .fromJson( result , collectionType);
+
+                callBackData.onSuccess(lcs);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callBackData.onFail("Fail");
+            }
+        });
+
     }
 }

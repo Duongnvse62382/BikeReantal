@@ -10,11 +10,11 @@ import android.widget.Toast;
 import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.presenter.LoginAccountPresenter;
 import com.duongnv.bikerental.views.LoginAccountView;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
+//import com.facebook.CallbackManager;
+//import com.facebook.FacebookCallback;
+//import com.facebook.FacebookException;
+//import com.facebook.login.LoginResult;
+//import com.facebook.login.widget.LoginButton;
 
 
 import java.io.Serializable;
@@ -22,10 +22,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoginAccountView {
-    LoginButton btnLogin;
+//    LoginButton btnLogin;
     private EditText edtUserName, edtPassword;
     private LoginAccountPresenter mloginAccountPresenter;
-    private CallbackManager callbackManager;
+//    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,35 +33,35 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         setContentView(R.layout.activity_main);
         edtUserName = findViewById(R.id.editUsername);
         edtPassword = findViewById(R.id.editPassword);
-        btnLogin = findViewById(R.id.login_button);
+//        btnLogin = findViewById(R.id.login_button);
 
-        callbackManager = CallbackManager.Factory.create();
-        btnLogin.setReadPermissions(Arrays.asList("email","public_profile"));
-
-        btnLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                    String token = loginResult.getAccessToken().getToken().toString();
-                System.out.println("token : " + token);
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                error.printStackTrace();
-            }
-        });
+//        callbackManager = CallbackManager.Factory.create();
+//        btnLogin.setReadPermissions(Arrays.asList("email","public_profile"));
+//
+//        btnLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                    String token = loginResult.getAccessToken().getToken().toString();
+//                System.out.println("token : " + token);
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                error.printStackTrace();
+//            }
+//        });
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        callbackManager.onActivityResult(requestCode, resultCode, data);
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
 
 
 

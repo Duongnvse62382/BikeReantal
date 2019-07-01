@@ -10,6 +10,7 @@
 
     <!--<1>-->
     <LinearLayout
+
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,7 +49,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/vietnammrb"
             android:layout_weight="4"
@@ -57,7 +58,38 @@
         <LinearLayout
             android:layout_weight="1.5"
             android:layout_width="0dp"
-            android:layout_height="match_parent"></LinearLayout>
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:gravity="end"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Name:"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type:"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price:"/>
+            <TextView
+                android:textStyle="bold"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price:"/>
+
+        </LinearLayout>
 
         <LinearLayout
 
@@ -69,21 +101,21 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name: xe sirus"/>
+                android:text="xe sirus"/>
 
             <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Type: xe số"/>
+            android:text="xe số"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price: 20k 1/slot/2h"/>
+                android:text="200k/day"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price: xe mới mua bao chạydasdasda
+                android:text="xe mới mua bao chạydasdasda
                 sdsadasdasdsadasdasdasdasda
                 sdasdasdasdasdasdasdasda"/>
 
@@ -95,6 +127,8 @@
 
     <!--<3>-->
     <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -120,6 +154,7 @@
                 android:layout_weight="8.5"
                 android:enabled="false"
                 android:id="@+id/editDate"
+                android:hint="Day Rental"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -142,6 +177,7 @@
                 android:layout_weight="8.5"
                 android:enabled="false"
                 android:id="@+id/editDateReturn"
+                android:hint="Day Return Bike"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
@@ -221,7 +257,7 @@
                     android:background="@drawable/serach_bg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Ví BRN"/>
+                    android:text="Wallet BRK"/>
 
             </LinearLayout>
 
@@ -243,7 +279,7 @@
                     android:background="@drawable/serach_bg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Tiền Mặt"
+                    android:text="Payment"
                     android:layout_gravity="center"/>
             </LinearLayout>
 

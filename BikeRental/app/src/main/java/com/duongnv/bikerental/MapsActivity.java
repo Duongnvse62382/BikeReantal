@@ -1,6 +1,7 @@
 package com.duongnv.bikerental;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -20,6 +21,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.duongnv.bikerental.clusterRenderer.MarkerClusterRenderer;
+import com.duongnv.bikerental.model.Bike;
+import com.duongnv.bikerental.model.Store;
+import com.duongnv.bikerental.presenter.PrintBikePresenter;
+import com.duongnv.bikerental.utils.GoogleMapHelper;
+import com.duongnv.bikerental.views.GetBikeByStoreView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,19 +34,25 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.maps.android.clustering.Cluster;
+import com.google.maps.android.clustering.ClusterManager;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GetBikeByStoreView, ClusterManager.OnClusterClickListener<Store> {
 
 
+    private PrintBikePresenter mprintBikePresenter;
     private ImageButton mGps;
     private EditText edtSearch;
     private static final String TAG = "MapsActiviti";
@@ -59,7 +72,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
         setContentView(R.layout.activity_maps);
+
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        assert supportMapFragment != null;
+        supportMapFragment.getMapAsync(googleMap -> {
+            this.mMap = googleMap;
+            GoogleMapHelper.defaultMapSettings(googleMap);
+            setUpClusterManager(googleMap);
+        });
+
+
+
         edtSearch = findViewById(R.id.editSearch);
         mGps = findViewById(R.id.ic_gps);
         getLocationPremission();
@@ -68,6 +96,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     }
+
+
+
 
 
     private void init(){
@@ -208,4 +239,66 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
+
+    public void ClickToStore(View view) {
+        mprintBikePresenter = new PrintBikePresenter(this);
+        mprintBikePresenter.getBikeByStore();
+
+    }
+
+    @Override
+    public void getBikeSS(List<Bike> list) {
+        Intent intent = new Intent(this, StoreActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("bikes", (Serializable) list);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void getBikeFail(String message) {
+        Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    @Override
+    public boolean onClusterClick(Cluster<Store> cluster) {
+        if (cluster == null) return false;
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Store store : cluster.getItems())
+            builder.include(store.getPosition());
+        LatLngBounds bounds = builder.build();
+        try {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    private List<Store> getItems() {
+        return Arrays.asList(
+                new Store("Store1", new LatLng(10.855356, 106.628619)),
+                new Store("Store1", new LatLng(10.851738, 106.622810)),
+                new Store("Store1", new LatLng(10.851401, 106.623721)),
+                new Store("Store1", new LatLng(10.858401, 106.623621)),
+                new Store("Store1", new LatLng(10.851601, 106.623221)),
+                new Store("Store1", new LatLng(10.856401, 106.623121)),
+                new Store("Store1", new LatLng(10.851401, 106.623521)),
+                new Store("Store1", new LatLng(10.852401, 106.623121)),
+                new Store("Store1", new LatLng(10.851401, 106.623121)),
+                new Store("Store1", new LatLng(10.851401, 106.623181)),
+                new Store("Store1", new LatLng(10.853401, 106.623191))
+        );
+    }
+    private void setUpClusterManager(GoogleMap googleMap) {
+        ClusterManager<Store> clusterManager = new ClusterManager<>(this, googleMap);
+        clusterManager.setRenderer(new MarkerClusterRenderer(this, googleMap, clusterManager));
+        googleMap.setOnCameraIdleListener(clusterManager);
+        List<Store> items = getItems();
+        clusterManager.addItems(items);
+        clusterManager.cluster();
+    }
 }
