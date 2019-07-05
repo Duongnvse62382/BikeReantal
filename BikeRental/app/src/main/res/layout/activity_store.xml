@@ -5,12 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".StoreActivity">
+    <LinearLayout
+        android:background="@drawable/rental2"
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:weightSum="5"
+        android:layout_height="0dp">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tbback"
+            app:navigationIcon="@drawable/iconback"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
 
-    <TextView
-        android:id="@+id/txtbike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bIKE"/>
+        </android.support.v7.widget.Toolbar>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="10">
+                <ImageView
+                    android:src="@drawable/vn"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:paddingTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:text="StoreHCM"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <TextView
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="10dp"
+                android:textColor="#ffffff"
+                android:text="141-143 Hà thị khiêm, phường trung mỵ tây, quận 12"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#E0EEE0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="BIKE"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6.5"
+        android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>

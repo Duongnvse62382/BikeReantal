@@ -25,8 +25,10 @@ import com.duongnv.bikerental.clusterRenderer.MarkerClusterRenderer;
 import com.duongnv.bikerental.model.Bike;
 import com.duongnv.bikerental.model.Store;
 import com.duongnv.bikerental.presenter.PrintBikePresenter;
+import com.duongnv.bikerental.presenter.PrintStorePresenter;
 import com.duongnv.bikerental.utils.GoogleMapHelper;
 import com.duongnv.bikerental.views.GetBikeByStoreView;
+import com.duongnv.bikerental.views.GetStoreView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,16 +45,18 @@ import com.google.maps.android.clustering.ClusterManager;
 
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GetBikeByStoreView, ClusterManager.OnClusterClickListener<Store> {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, ClusterManager.OnClusterClickListener<Store>,
+        GetStoreView {
 
 
-    private PrintBikePresenter mprintBikePresenter;
+    PrintStorePresenter mprintStorePresenter;
+    private Random mRandom = new Random(1984);
     private ImageButton mGps;
     private EditText edtSearch;
     private static final String TAG = "MapsActiviti";
@@ -85,6 +89,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             GoogleMapHelper.defaultMapSettings(googleMap);
             setUpClusterManager(googleMap);
         });
+
+
+
 
 
 
@@ -240,29 +247,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-    public void ClickToStore(View view) {
-        mprintBikePresenter = new PrintBikePresenter(this);
-        mprintBikePresenter.getBikeByStore();
-
-    }
-
-    @Override
-    public void getBikeSS(List<Bike> list) {
-        Intent intent = new Intent(this, StoreActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("bikes", (Serializable) list);
-        intent.putExtras(bundle);
-        startActivity(intent);
-
-    }
-
-    @Override
-    public void getBikeFail(String message) {
-        Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
-
-    }
-
-
     @Override
     public boolean onClusterClick(Cluster<Store> cluster) {
         if (cluster == null) return false;
@@ -280,17 +264,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private List<Store> getItems() {
         return Arrays.asList(
-                new Store("Store1", new LatLng(10.855356, 106.628619)),
-                new Store("Store1", new LatLng(10.851738, 106.622810)),
-                new Store("Store1", new LatLng(10.851401, 106.623721)),
-                new Store("Store1", new LatLng(10.858401, 106.623621)),
-                new Store("Store1", new LatLng(10.851601, 106.623221)),
-                new Store("Store1", new LatLng(10.856401, 106.623121)),
-                new Store("Store1", new LatLng(10.851401, 106.623521)),
-                new Store("Store1", new LatLng(10.852401, 106.623121)),
-                new Store("Store1", new LatLng(10.851401, 106.623121)),
-                new Store("Store1", new LatLng(10.851401, 106.623181)),
-                new Store("Store1", new LatLng(10.853401, 106.623191))
+                new Store("Store1", position()),
+                new Store("Store2", position()),
+                new Store("Store3", position()),
+                new Store("Store4", position()),
+                new Store("Store5", position())
         );
     }
     private void setUpClusterManager(GoogleMap googleMap) {
@@ -300,5 +278,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         List<Store> items = getItems();
         clusterManager.addItems(items);
         clusterManager.cluster();
+    }
+
+    @Override
+    public void getBikeSS(List<Store> list) {
+        mprintStorePresenter = new PrintStorePresenter(this);
+        mprintStorePresenter.getStore();
+    }
+
+    @Override
+    public void getBikeFail(String message) {
+
+    }
+
+    private LatLng position() {
+        return new LatLng(random(10.851517, 10.852444), random(106.622769, 106.630914));
+    }
+
+    private double random(double min, double max) {
+        return mRandom.nextDouble() * (max - min) + min;
     }
 }

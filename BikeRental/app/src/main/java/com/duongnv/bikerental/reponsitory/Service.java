@@ -13,6 +13,7 @@ import retrofit2.http.Path;
 
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETACCOUNT;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETBIKEBYSTORE;
+import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETSTORES;
 
 public interface Service {
     @POST(GETACCOUNT)
@@ -38,4 +39,6 @@ public interface Service {
         Call<ResponseBody> getBikeByStore();
 
 
+    @GET(GETSTORES)
+    Call<ResponseBody> getStores();
 }

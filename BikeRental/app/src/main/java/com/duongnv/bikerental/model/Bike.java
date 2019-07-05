@@ -5,11 +5,18 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Bike implements Serializable {
+
+    @SerializedName("BikeID")
+    int bikeID;
+
     @SerializedName("BikeName")
     String bikeName;
 
     @SerializedName("Image")
     String image;
+
+    @SerializedName("Price")
+    String price;
 
     @SerializedName("Description")
     String description;
@@ -23,6 +30,21 @@ public class Bike implements Serializable {
     @SerializedName("Status")
     int status;
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public int getBikeID() {
+        return bikeID;
+    }
+
+    public void setBikeID(int bikeID) {
+        this.bikeID = bikeID;
+    }
 
     public String getBikeName() {
         return bikeName;

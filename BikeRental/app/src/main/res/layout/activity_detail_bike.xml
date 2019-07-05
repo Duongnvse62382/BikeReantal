@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".DetailBikeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbback"
+        app:navigationIcon="@drawable/iconback"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/imageBikedt"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:src="@drawable/rental2"/>
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="3">
+        <TextView
+            android:id="@+id/txtNameBike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:text="Name"/>
+        <TextView
+            android:id="@+id/txtNameType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:text="Xe số"/>
+        <TextView
+            android:id="@+id/txtDecription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:text="Xe mới mua"/>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/boder_bg"></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="10"
+            android:orientation="horizontal">
+            <TextView
+                android:paddingTop="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:text="Price:"/>
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:paddingTop="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:text="200.000đ"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRental"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#F8F6F7"
+        android:background="@drawable/button_3state"
+        android:text="Rental" />
+
+</LinearLayout>

@@ -49,6 +49,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/imageBikeb"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/vietnammrb"
@@ -98,21 +99,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/txtBikeName"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="xe sirus"/>
 
             <TextView
+                android:id="@+id/txtTypeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="xe số"/>
 
             <TextView
+                android:id="@+id/txtPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="200k/day"/>
             <TextView
+                android:id="@+id/txtDecription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="xe mới mua bao chạydasdasda
@@ -158,13 +163,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
-            <Button
+            <ImageView
                 android:layout_weight="1.5"
                 android:id="@+id/btnDateRental"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#FCFBFB"
-                android:drawableLeft="@drawable/calendar" />
+                android:background="@drawable/calendar" />
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="0dp"
@@ -181,13 +185,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
-            <Button
+            <ImageView
                 android:layout_weight="1.5"
                 android:id="@+id/btnDatereturn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#FCFBFB"
-                android:drawableLeft="@drawable/calendar" />
+                android:background="@drawable/calendar" />
         </LinearLayout>
         <LinearLayout
             android:layout_weight="3"
@@ -212,6 +215,7 @@
             android:weightSum="4"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/txtTotal"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:paddingRight="80dp"
@@ -219,8 +223,9 @@
                 android:layout_weight="2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="Total 3 day"/>
+                android:text="Total 0 day"/>
             <TextView
+                android:id="@+id/txtTotalPrice"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textColor="#000000"

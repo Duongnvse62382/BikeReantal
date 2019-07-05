@@ -64,34 +64,14 @@
         android:layout_height="40dp"
         android:layout_below="@id/relayout1"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="445dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="-50dp"
         android:background="@drawable/circle_bt"
         android:src="@drawable/ic_gsp" />
 
-    <ImageButton
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/relayout1"
-        android:scaleType="fitXY"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="300dp"
-        android:layout_marginRight="200dp"
-        android:layout_marginBottom="-50dp"
-        android:background="@drawable/circle_bt"
-        android:onClick="ClickToStore"
-        android:src="@drawable/motorbike" />
 
-    <!--<ImageView-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_below="@id/relayout1"-->
-        <!--android:layout_alignParentRight="false"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_marginLeft="15dp"-->
-        <!--android:id="@+id/ic_back"-->
-        <!--android:src="@drawable/iconback"/>-->
+
 
 
 </RelativeLayout>

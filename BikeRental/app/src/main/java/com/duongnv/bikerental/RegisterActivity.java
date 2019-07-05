@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements InsertAccount
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
-                        etDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        etDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
 
                     }
                 }, mYear, mMonth, mDay);

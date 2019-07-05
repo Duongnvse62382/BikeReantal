@@ -2,6 +2,7 @@ package com.duongnv.bikerental.reponsitory;
 
 import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
+import com.duongnv.bikerental.model.Store;
 import com.duongnv.bikerental.utils.CallBackData;
 import com.duongnv.bikerental.utils.ClientAPI;
 import com.google.gson.Gson;
@@ -134,6 +135,9 @@ public class ReponsitoryImplement implements Reponsitory{
         });
     }
 
+
+    //bike
+
     @Override
     public void getBikeByStore(final CallBackData<List<Bike>> callBackData) {
         ClientAPI clientAPI = new ClientAPI();
@@ -163,5 +167,37 @@ public class ReponsitoryImplement implements Reponsitory{
             }
         });
 
+    }
+
+
+    //STORE
+
+    @Override
+    public void getStore(CallBackData<List<Store>> callBackData) {
+        ClientAPI clientAPI = new ClientAPI();
+        Call<ResponseBody> bodyCall = clientAPI.resoService().getStores();
+        bodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                if(response.code() == 200 & response.body() != null){
+                    try {
+                        result =  response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Type collectionType = new TypeToken<List<Store>>(){}.getType();
+                List<Store> lcs = (List<Store>) new Gson()
+                        .fromJson( result , collectionType);
+
+                callBackData.onSuccess(lcs);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callBackData.onFail("Fail");
+            }
+        });
     }
 }

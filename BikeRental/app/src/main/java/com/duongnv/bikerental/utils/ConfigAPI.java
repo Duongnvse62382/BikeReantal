@@ -6,6 +6,7 @@ public class ConfigAPI {
     public interface Api {
         String GETACCOUNT = "Accounts";
         String GETBIKEBYSTORE = "Bikes";
+        String GETSTORES = "Stores";
     }
 
     //đường dẫn API
