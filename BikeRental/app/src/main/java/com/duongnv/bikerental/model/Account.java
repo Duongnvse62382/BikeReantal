@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 public class Account implements Serializable {
 
+    @SerializedName("UserID")
+    int userID;
+
     @SerializedName("Username")
     String username;
 
@@ -29,6 +32,14 @@ public class Account implements Serializable {
 
     @SerializedName("Role")
     int role;
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     public String getUsername() {
         return username;

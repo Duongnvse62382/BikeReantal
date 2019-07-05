@@ -13,12 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duongnv.bikerental.model.Account;
+import com.duongnv.bikerental.presenter.UpdateAccountPresenter;
+import com.duongnv.bikerental.views.UpdateAccountView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity implements UpdateAccountView{
+
+    private UpdateAccountPresenter mupdateAccountPresenter;
 
     private Button btnDatePicker;
     private EditText etDate;
@@ -26,6 +30,9 @@ public class EditProfileActivity extends AppCompatActivity {
     private TextView textUsername;
     private Account mAccount;
     private EditText  edtPassword, edtConfirm, edtPhone, edtEmail, edtAddress, edtFullname;
+
+    private String  username, password, fullname, email, phone, address, birthDay;
+    private int userid, role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +86,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
-                        etDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        etDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
 
                     }
                 }, mYear, mMonth, mDay);
@@ -93,7 +100,15 @@ public class EditProfileActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(this, "Edit Success!", Toast.LENGTH_SHORT).show();
+//        password = edtPassword.getText().toString();
+//        fullname = edtFullname.getText().toString();
+//        email = edtEmail.getText().toString();
+//        birthDay = etDate.getText().toString();
+//        phone = edtPhone.getText().toString();
+//        address = edtAddress.getText().toString();
+//        mupdateAccountPresenter =  new UpdateAccountPresenter(this);
+//        mupdateAccountPresenter.updateAccount(mAccount.getUserID(), mAccount.getUsername(), password, fullname, phone, email, address, birthDay, mAccount.getRole());
+
     }
 
 
@@ -158,5 +173,19 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void ClickToBack(View view) {
         finish();
+    }
+
+    @Override
+    public void updateSS(String message) {
+
+        Toast.makeText(this, "Edit Success!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void updateFail(String massage) {
+
     }
 }

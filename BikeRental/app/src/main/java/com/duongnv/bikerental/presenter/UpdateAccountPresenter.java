@@ -17,8 +17,8 @@ public class UpdateAccountPresenter {
         this.reponsitory = new ReponsitoryImplement();
     }
 
-    public void updateAccount(String username, String password, String fullname, String phonenumber, String email, String address, String birtday){
-        reponsitory.updateAccount(username, password, fullname, phonenumber, email, address, birtday, new CallBackData<List<Account>>() {
+    public void updateAccount(int userId, String username, String password, String fullname, String phonenumber, String email, String address, String birtday, int role){
+        reponsitory.updateAccount(userId, username, password, fullname, phonenumber, email, address, birtday, 1, new CallBackData<List<Account>>() {
             @Override
             public void onSuccess(List<Account> list) {
 
@@ -26,14 +26,15 @@ public class UpdateAccountPresenter {
 
             @Override
             public void onSuccessString(String mess) {
-                mupdateAccountView.updateSS(mess);
-
+                 mupdateAccountView.updateSS(mess);
             }
 
             @Override
             public void onFail(String message) {
                 mupdateAccountView.updateFail(message);
+
             }
         });
+
     }
 }

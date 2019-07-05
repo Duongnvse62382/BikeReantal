@@ -17,12 +17,11 @@ public class LoginAccountPresenter {
         this.reponsitory = new ReponsitoryImplement();
     }
 
-    public void loginAccount(){
-        reponsitory.getAccount(new CallBackData<List<Account>>() {
+    public void loginAccount(String username, String password){
+        reponsitory.loginAccount(username, password, new CallBackData<Account>() {
             @Override
-            public void onSuccess(List<Account> list) {
-                loginAccountView.loginSS(list);
-
+            public void onSuccess(Account account) {
+                loginAccountView.loginSS(account);
             }
 
             @Override

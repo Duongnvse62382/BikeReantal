@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         if(!validUsername() | !validPasssrd()){
             return;
         }
+        String username = edtUserName.getText().toString();
+        String password = edtPassword.getText().toString();
         mloginAccountPresenter = new LoginAccountPresenter(this);
-        mloginAccountPresenter.loginAccount();
-        Toast.makeText(MainActivity.this,"Login success!",Toast.LENGTH_LONG).show();
-
+        mloginAccountPresenter.loginAccount(username, password);
     }
 
 
@@ -108,11 +108,12 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
     }
 
 
+
     @Override
-    public void loginSS(List<Account> list) {
+    public void loginSS(Account account) {
         Intent intent = new Intent(this, HomeActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("key", (Serializable) list);
+        bundle.putSerializable("key", (Serializable) account);
         intent.putExtras(bundle);
         finish();
         startActivity(intent);
@@ -123,5 +124,6 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
     public void loginFail(String message) {
 
         Toast.makeText(MainActivity.this,"Username or Password Wrong!",Toast.LENGTH_LONG).show();
+        edtPassword.setText("");
     }
 }
