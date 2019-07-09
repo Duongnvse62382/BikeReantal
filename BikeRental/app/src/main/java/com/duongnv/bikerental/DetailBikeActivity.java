@@ -18,6 +18,7 @@ public class DetailBikeActivity extends AppCompatActivity {
     private TextView textName, textType, textDecription, textPrice;
     private Button btnRental;
     private Bike bikes;
+    private ImageView iconback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,13 @@ public class DetailBikeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_bike);
         initView();
         getBikePostion();
+
+        iconback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btnRental.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +54,7 @@ public class DetailBikeActivity extends AppCompatActivity {
         textDecription = findViewById(R.id.txtDecription);
         textPrice = findViewById(R.id.txtPrice);
         btnRental = findViewById(R.id.btnRental);
+        iconback = findViewById(R.id.iconback);
 
     }
 
@@ -56,6 +65,6 @@ public class DetailBikeActivity extends AppCompatActivity {
         textName.setText(bikes.getBikeName()+ "");
         textType.setText(bikes.getTypeName()+ "");
         textDecription.setText(bikes.getDescription()+ "");
-        textPrice.setText(bikes.getPrice()+ "đ");
+        textPrice.setText(bikes.getPrice()+ "$/day");
     }
 }

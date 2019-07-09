@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         String password = edtPassword.getText().toString();
         mloginAccountPresenter = new LoginAccountPresenter(this);
         mloginAccountPresenter.loginAccount(username, password);
+
     }
 
 
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         intent.putExtras(bundle);
         finish();
         startActivity(intent);
+
 
     }
 

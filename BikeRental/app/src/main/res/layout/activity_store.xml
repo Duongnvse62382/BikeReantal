@@ -14,14 +14,26 @@
         android:orientation="vertical"
         android:weightSum="5"
         android:layout_height="0dp">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tbback"
-            app:navigationIcon="@drawable/iconback"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp">
+        <LinearLayout
 
-        </android.support.v7.widget.Toolbar>
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:id="@+id/iconback"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/iconback"
+                />
+        </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -46,7 +58,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent" />
                 <TextView
-                    android:paddingTop="10dp"
+                    android:paddingTop="3dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="9"
@@ -86,6 +98,7 @@
 
 
     <LinearLayout
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6.5"

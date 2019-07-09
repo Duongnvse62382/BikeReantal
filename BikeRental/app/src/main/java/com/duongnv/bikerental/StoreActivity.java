@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.duongnv.bikerental.adapter.BikeAdapter;
@@ -19,6 +21,7 @@ import java.util.List;
 public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreView {
 
 
+    private ImageView iconback;
     private BikeAdapter bikeAdapter;
     private RecyclerView mrecyclerView;
     private List<Bike> listBike;
@@ -32,6 +35,13 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
         initView();
         initData();
 
+        iconback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
 
 
@@ -40,6 +50,7 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
     public void initView(){
         //ánh xạ
         mrecyclerView = findViewById(R.id.listView);
+        iconback = findViewById(R.id.iconback);
 
         //set layout cho recyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StoreActivity.this);

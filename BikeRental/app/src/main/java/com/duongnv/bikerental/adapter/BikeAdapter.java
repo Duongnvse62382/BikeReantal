@@ -40,7 +40,7 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.ViewHolderBike
     public void onBindViewHolder(@NonNull ViewHolderBike viewHolderBike, int i) {
         viewHolderBike.txtBikeName.setText(bikeList.get(i).getBikeName());
         viewHolderBike.txtTypeName.setText(bikeList.get(i).getTypeName());
-        viewHolderBike.txtprice.setText(bikeList.get(i).getPrice());
+        viewHolderBike.txtprice.setText(bikeList.get(i).getPrice()+ " $/day");
         Picasso.get().load(bikeList.get(i).getImage()).into(viewHolderBike.imageBike);
         viewHolderBike.container.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -57,7 +57,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     PrintStorePresenter mprintStorePresenter;
     private Random mRandom = new Random(1984);
-    private ImageButton mGps;
+    private ImageButton mGps, imageLogo;
     private EditText edtSearch;
     private static final String TAG = "MapsActiviti";
     private boolean mLocationPremisstionsGranted = false;
@@ -71,6 +71,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private FusedLocationProviderClient mfusedLocationProviderClient;
     private GoogleMap mMap;
 
+    private List<Store> stores;
 
 
     @Override
@@ -100,6 +101,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         getLocationPremission();
         init();
 
+
+        imageLogo = findViewById(R.id.imageStore);
+        imageLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, StoreActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -262,15 +272,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+
+    private void initData(){
+        mprintStorePresenter = new PrintStorePresenter(this);
+        mprintStorePresenter.getStore();
+        stores = new ArrayList<>();
+
+
+    }
+
     private List<Store> getItems() {
+//        initData();
+//        getBikeSS(stores);
+//        int i;
+//        for (i = 0; i < stores.size(); i++){
+//            stores.get(i);
+//        }
+
         return Arrays.asList(
+
                 new Store("Store1", position()),
                 new Store("Store2", position()),
                 new Store("Store3", position()),
-                new Store("Store4", position()),
-                new Store("Store5", position())
+                new Store("Store4", position())
         );
     }
+
+
     private void setUpClusterManager(GoogleMap googleMap) {
         ClusterManager<Store> clusterManager = new ClusterManager<>(this, googleMap);
         clusterManager.setRenderer(new MarkerClusterRenderer(this, googleMap, clusterManager));
@@ -282,8 +310,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void getBikeSS(List<Store> list) {
-        mprintStorePresenter = new PrintStorePresenter(this);
-        mprintStorePresenter.getStore();
     }
 
     @Override

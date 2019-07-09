@@ -15,25 +15,28 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETACCOUNT;
+import static com.duongnv.bikerental.utils.ConfigAPI.Api.CREATEACCOUNT;
+import static com.duongnv.bikerental.utils.ConfigAPI.Api.LOGINACCOUNT;
+
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETBIKEBYSTORE;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETSTORES;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.UPDATEACCOUNT;
+import static com.duongnv.bikerental.utils.ConfigAPI.Api.BOOKINGBIKE;
 
 public interface Service {
-    @POST(GETACCOUNT)
+    @POST(CREATEACCOUNT)
     Call<ResponseBody> registerAccount(
             @Body RequestBody requestBody
     );
 
-    @GET(GETACCOUNT)
+    @GET(LOGINACCOUNT)
     Call<ResponseBody> loginAccount(
             @Query("username") String username,
             @Query("password") String password
     );
 
 
-    @GET(GETACCOUNT)
+    @GET(CREATEACCOUNT)
     Call<ResponseBody> getAccount(
 
     );
@@ -53,4 +56,11 @@ public interface Service {
 
     @GET(GETSTORES)
     Call<ResponseBody> getStores();
+
+
+    //payment
+    @POST(BOOKINGBIKE)
+    Call<ResponseBody> bookingPayment(
+        @Body RequestBody requestBody
+    );
 }

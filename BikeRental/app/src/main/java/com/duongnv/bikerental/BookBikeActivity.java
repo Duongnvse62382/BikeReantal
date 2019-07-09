@@ -90,23 +90,27 @@ public class BookBikeActivity extends AppCompatActivity {
         textName.setText(bikes.getBikeName()+ "");
         textType.setText(bikes.getTypeName()+ "");
         textDeciption.setText(bikes.getDescription()+ "");
-        textPrice.setText(bikes.getPrice()+ "đ");
+        textPrice.setText(bikes.getPrice()+ "$/day");
     }
 
 
     public void sumDay(){
-        int sum = (int) ((calendarReturn.getTimeInMillis() - calendarRental.getTimeInMillis()) / (1000*60*60*24));
 
-        if(sum <= 0 || sum >7){
-            Toast.makeText(BookBikeActivity.this, "Only Rental for 7 day", Toast.LENGTH_SHORT).show();
-            edtDateReturn.setText("");
-            textSumDay.setText("Total "+ "0" + " Day");
+        if(calendarReturn.getTime() == null){
+            Toast.makeText(BookBikeActivity.this, "Please choose DayRental", Toast.LENGTH_SHORT).show();
         }
         else {
-            textSumDay.setText("Total "+ sum + " Day");
-            float price = Float.parseFloat(bikes.getPrice());
-            float totalPrice = sum * price;
-            textTotalPrice.setText(totalPrice+ "đ");
+            int sum = (int) ((calendarReturn.getTimeInMillis() - calendarRental.getTimeInMillis()) / (1000 * 60 * 60 * 24));
+            if (sum <= 0 || sum > 7) {
+                Toast.makeText(BookBikeActivity.this, "Only Rental for 7 day", Toast.LENGTH_SHORT).show();
+                edtDateReturn.setText("");
+                textSumDay.setText("Total " + "0" + " Day");
+            } else {
+                textSumDay.setText("Total " + sum + " Day");
+                float price = Float.parseFloat(bikes.getPrice());
+                float totalPrice = sum * price;
+                textTotalPrice.setText(totalPrice + "$");
+            }
         }
 
     }
@@ -147,11 +151,16 @@ public class BookBikeActivity extends AppCompatActivity {
                         calendarReturn.set(dayOfMonth, monthOfYear, year);
 
                         edtDateReturn.setText(simpleDateFormat.format(calendarReturn.getTime()));
-                        sumDay();
+
+                            sumDay();
 
                     }
+
                 }, mYear, mMonth, mDay);
+
+
         datePickerDialog.show();
+
 
     }
 

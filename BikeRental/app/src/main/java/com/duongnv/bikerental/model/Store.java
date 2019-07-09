@@ -5,16 +5,32 @@ import com.google.gson.annotations.SerializedName;
 import com.google.maps.android.clustering.ClusterItem;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Store implements ClusterItem, Serializable {
 
+
+    @SerializedName("StoreID")
+    private int storeID;
+
+
     @SerializedName("StoreName")
     private final String nameStore;
+
     @SerializedName("StorePhoneNo")
-    private  String storePhone;
+    private  int storePhone;
 
     @SerializedName("StoreAddress")
     private String storeAddress;
+
+    @SerializedName("StoreEmail")
+    private String storeEmail;
+
+    @SerializedName("UserID")
+    private int userID;
+
+    @SerializedName("Bike")
+    private List<Bike> Bike;
 
 
 
@@ -29,13 +45,6 @@ public class Store implements ClusterItem, Serializable {
         return nameStore;
     }
 
-    public String getStorePhone() {
-        return storePhone;
-    }
-
-    public void setStorePhone(String storePhone) {
-        this.storePhone = storePhone;
-    }
 
     public String getStoreAddress() {
         return storeAddress;
@@ -43,6 +52,50 @@ public class Store implements ClusterItem, Serializable {
 
     public void setStoreAddress(String storeAddress) {
         this.storeAddress = storeAddress;
+    }
+
+
+
+
+    public String getStoreEmail() {
+        return storeEmail;
+    }
+
+    public void setStoreEmail(String storeEmail) {
+        this.storeEmail = storeEmail;
+    }
+
+
+    public int getStoreID() {
+        return storeID;
+    }
+
+    public void setStoreID(int storeID) {
+        this.storeID = storeID;
+    }
+
+    public int getStorePhone() {
+        return storePhone;
+    }
+
+    public void setStorePhone(int storePhone) {
+        this.storePhone = storePhone;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public List<com.duongnv.bikerental.model.Bike> getBike() {
+        return Bike;
+    }
+
+    public void setBike(List<com.duongnv.bikerental.model.Bike> bike) {
+        Bike = bike;
     }
 
     @Override

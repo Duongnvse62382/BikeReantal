@@ -4,18 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".DetailBikeActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tbback"
-        app:navigationIcon="@drawable/iconback"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp">
+    <LinearLayout
 
-    </android.support.v7.widget.Toolbar>
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <ImageView
+            android:id="@+id/iconback"
+            android:paddingLeft="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/iconback"
+            />
+
+
+    </LinearLayout>
 
     <ImageView
         android:scaleType="fitXY"
@@ -24,10 +37,11 @@
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="4"
         android:src="@drawable/rental2"/>
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
@@ -56,10 +70,7 @@
             android:textColor="#000000"
             android:textSize="20dp"
             android:text="Xe mới mua"/>
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/boder_bg"></LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -84,23 +95,28 @@
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:textSize="20dp"
-                android:text="200.000đ"/>
+                android:text="$"/>
 
         </LinearLayout>
 
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnRental"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#F8F6F7"
-        android:background="@drawable/button_3state"
-        android:text="Rental" />
+        android:layout_weight="2">
+        <Button
+            android:id="@+id/btnRental"
+            android:textStyle="bold"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#F8F6F7"
+            android:background="@drawable/button_3state"
+            android:text="Rental" />
+    </LinearLayout>
 
 </LinearLayout>

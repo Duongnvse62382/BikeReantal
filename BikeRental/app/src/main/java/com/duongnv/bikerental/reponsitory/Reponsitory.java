@@ -18,6 +18,8 @@ public interface Reponsitory {
     void getBikeByStore(CallBackData<List<Bike>> callBackData);
 
     void getStore(CallBackData<List<Store>> callBackData);
+
+    void bookingBike(float amount, int slots, int bikeId, String rentalBike, String returnBike);
 }
 
 // chứa các hàm mà các activity cần

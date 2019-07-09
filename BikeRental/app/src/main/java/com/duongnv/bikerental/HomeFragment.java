@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
         imgScooter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getBaseContext(), StoreActivity.class);
+                Intent intent = new Intent(getActivity().getBaseContext(), MapsActivity.class);
                 getActivity().startActivity(intent);
             }
         });

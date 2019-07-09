@@ -8,6 +8,7 @@ import com.duongnv.bikerental.utils.ClientAPI;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -238,5 +239,28 @@ public class ReponsitoryImplement implements Reponsitory{
                 callBackData.onFail("Fail");
             }
         });
+    }
+
+    @Override
+    public void bookingBike(float amount, int slots, int bikeId, String rentalBike, String returnBike) {
+        ClientAPI clientAPI = new ClientAPI();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("Amount",amount);
+            jsonObject.put("Slots",slots);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray jsonArray =  new JSONArray();
+        try {
+            jsonObject.getJSONArray("BookingDetails");
+            jsonObject.put("BikeID", bikeId);
+            jsonObject.put("BentalDate", rentalBike);
+            jsonObject.put("returnDate", returnBike);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }
