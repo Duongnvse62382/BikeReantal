@@ -288,7 +288,8 @@
                     android:layout_height="wrap_content"
                     android:text="Payment"
                     android:textColor="#F8F6F7"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:onClick="ClickToBook"/>
 
             <LinearLayout
                 android:layout_weight="4"

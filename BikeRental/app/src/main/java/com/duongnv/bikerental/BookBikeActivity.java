@@ -1,6 +1,7 @@
 package com.duongnv.bikerental;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duongnv.bikerental.model.Bike;
+import com.duongnv.bikerental.presenter.BookingBikePresenter;
+import com.duongnv.bikerental.views.BookingBikeView;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class BookBikeActivity extends AppCompatActivity {
+public class BookBikeActivity extends AppCompatActivity  implements BookingBikeView {
+
+
+    private BookingBikePresenter mbookingBikePresenter;
 
     private Bike bikes;
     private TextView textSumDay, textName, textType, textPrice, textDeciption, textTotalPrice;
@@ -44,7 +50,7 @@ public class BookBikeActivity extends AppCompatActivity {
         textPrice = findViewById(R.id.txtPrice);
         textDeciption = findViewById(R.id.txtDecription);
 
-        simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
 
 
@@ -96,22 +102,24 @@ public class BookBikeActivity extends AppCompatActivity {
 
     public void sumDay(){
 
-        if(calendarReturn.getTime() == null){
-            Toast.makeText(BookBikeActivity.this, "Please choose DayRental", Toast.LENGTH_SHORT).show();
+        if(!validDate()){
+            Toast.makeText(BookBikeActivity.this, "Please choose Day Rental", Toast.LENGTH_SHORT).show();
+            edtDateReturn.setText("");
+            return;
         }
-        else {
+
             int sum = (int) ((calendarReturn.getTimeInMillis() - calendarRental.getTimeInMillis()) / (1000 * 60 * 60 * 24));
             if (sum <= 0 || sum > 7) {
                 Toast.makeText(BookBikeActivity.this, "Only Rental for 7 day", Toast.LENGTH_SHORT).show();
                 edtDateReturn.setText("");
-                textSumDay.setText("Total " + "0" + " Day");
+                textSumDay.setText("0" + "");
             } else {
-                textSumDay.setText("Total " + sum + " Day");
-                float price = Float.parseFloat(bikes.getPrice());
-                float totalPrice = sum * price;
-                textTotalPrice.setText(totalPrice + "$");
+                textSumDay.setText(sum + "");
+                int price = Integer.parseInt(bikes.getPrice());
+                int totalPrice = sum * price;
+                textTotalPrice.setText(totalPrice + "");
             }
-        }
+
 
     }
 
@@ -127,7 +135,7 @@ public class BookBikeActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet (DatePicker view, int dayOfMonth,
                                           int monthOfYear, int year)  {
-                        calendarRental.set(dayOfMonth, monthOfYear, year);
+                        calendarRental.set(dayOfMonth , monthOfYear, year);
 
                         etDateRental.setText(simpleDateFormat.format(calendarRental.getTime()));
 
@@ -148,7 +156,7 @@ public class BookBikeActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int dayOfMonth,
                                           int monthOfYear, int year) {
-                        calendarReturn.set(dayOfMonth, monthOfYear, year);
+                        calendarReturn.set(dayOfMonth , monthOfYear, year);
 
                         edtDateReturn.setText(simpleDateFormat.format(calendarReturn.getTime()));
 
@@ -163,5 +171,66 @@ public class BookBikeActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+    public boolean validDate(){
+        String dateRental = etDateRental.getText().toString().trim();
+        if(dateRental.isEmpty()){
+            Toast.makeText(BookBikeActivity.this, "Please choose Date", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            return  true;
+        }
+    }
+
+    public boolean validDateReturn(){
+        String dateReturn = edtDateReturn.getText().toString().trim();
+        if(dateReturn.isEmpty()){
+            Toast.makeText(BookBikeActivity.this, "Please choose Date", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            return  true;
+        }
+    }
+
+
+    public void ClickToBook(View view) {
+        if(!validDate() | !validDateReturn()){
+            return;
+        }
+
+        BikeInfo();
+        String amount = textTotalPrice.getText().toString();
+        int slot = Integer.parseInt(textSumDay.getText().toString());
+        String bikerental = etDateRental.getText().toString();
+        String bikeRetuen = edtDateReturn.getText().toString();
+        int bikeID = bikes.getBikeID();
+        mbookingBikePresenter =  new BookingBikePresenter(this);
+        mbookingBikePresenter.bookingBike(amount, slot, bikeID, bikerental, bikeRetuen);
+
+
+    }
+
+
+    @Override
+    public void InsertSS(String message) {
+        Intent intent =  new Intent(BookBikeActivity.this, StoreActivity.class);
+        finish();
+        startActivity(intent);
+        Toast.makeText(BookBikeActivity.this,"ss",Toast.LENGTH_SHORT).show();
+    }
+
+
+
+
+    @Override
+    public void InsertFail(String massage) {
+
+    }
+
 
 }

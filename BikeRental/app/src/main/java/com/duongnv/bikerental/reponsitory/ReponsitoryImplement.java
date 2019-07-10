@@ -2,6 +2,8 @@ package com.duongnv.bikerental.reponsitory;
 
 import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
+import com.duongnv.bikerental.model.Booking;
+import com.duongnv.bikerental.model.BookingDetails;
 import com.duongnv.bikerental.model.Store;
 import com.duongnv.bikerental.utils.CallBackData;
 import com.duongnv.bikerental.utils.ClientAPI;
@@ -241,26 +243,56 @@ public class ReponsitoryImplement implements Reponsitory{
         });
     }
 
+
+
+    //Booking
+
     @Override
-    public void bookingBike(float amount, int slots, int bikeId, String rentalBike, String returnBike) {
+    public void bookingBike(String amount, int slots, int bikeId, String rentalBike, String returnBike, CallBackData callBackData) {
         ClientAPI clientAPI = new ClientAPI();
-        JSONObject jsonObject = new JSONObject();
+
+        JSONObject bookingJsonObject = new JSONObject();
         try {
-            jsonObject.put("Amount",amount);
-            jsonObject.put("Slots",slots);
+            JSONArray bookingDetailJsonArray = new JSONArray();
+
+                JSONObject bookingItemJsonObject = new JSONObject();
+                bookingItemJsonObject.put("BikeID",bikeId);
+                bookingItemJsonObject.put("BentalDate", rentalBike);
+                bookingItemJsonObject.put("returnDate",returnBike);
+                bookingDetailJsonArray.put(bookingItemJsonObject);
+            bookingJsonObject.put("BookingDetails",bookingDetailJsonArray);
+            bookingJsonObject.put("Amount", amount);
+            bookingJsonObject.put("Slots",slots);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JSONArray jsonArray =  new JSONArray();
-        try {
-            jsonObject.getJSONArray("BookingDetails");
-            jsonObject.put("BikeID", bikeId);
-            jsonObject.put("BentalDate", rentalBike);
-            jsonObject.put("returnDate", returnBike);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        RequestBody requestBody = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),bookingJsonObject.toString());
+        Call<ResponseBody> bodyCall = clientAPI.resoService().bookingPayment(requestBody);
+        bodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+                if(response.code()==200 & response.body() != null){
+                    String result = null;
+                    try {
+                        result = response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    callBackData.onSuccessString("Booking  success!");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                callBackData.onFail("Booking fail");
+            }
+        });
     }
+
+
 }
