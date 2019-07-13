@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duongnv.bikerental.clusterRenderer.MarkerClusterRenderer;
+import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
 import com.duongnv.bikerental.model.Store;
 import com.duongnv.bikerental.presenter.PrintBikePresenter;
@@ -37,6 +38,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -55,6 +57,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GetStoreView {
 
 
+    private Account mAccount;
     PrintStorePresenter mprintStorePresenter;
     private Random mRandom = new Random(1984);
     private ImageButton mGps, imageLogo;
@@ -102,17 +105,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         init();
 
 
+        Bundle bundle = getIntent().getExtras();
+        mAccount = (Account) bundle.getSerializable("account");
         imageLogo = findViewById(R.id.imageStore);
         imageLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapsActivity.this, StoreActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("account", mAccount);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
 
 
     }
+
+
 
 
 
@@ -133,6 +143,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         geoLocate();
+//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+//            @Override
+//            public boolean onMarkerClick(Marker marker) {
+//                return false;
+//            }
+//        });
         mGps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +192,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
     }
-
     private void getDeviceLocation(){
         mfusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         try{
@@ -200,6 +215,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.e(TAG, "getDiviceLocation " + e.getMessage());
         }
     }
+
 
     private void moveCamera(LatLng latLng, float zoom, String title){
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));

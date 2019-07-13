@@ -16,7 +16,7 @@ public class BookingBikePresenter {
     }
 
 
-    public void bookingBike(String amount, int slots, int bikeId, String rentalBike, String returnBike){
+    public void bookingBike(int amount, int slots, int bikeId, String rentalBike, String returnBike){
         reponsitory.bookingBike(amount, slots, bikeId, rentalBike, returnBike, new CallBackData() {
             @Override
             public void onSuccess(Object o) {
@@ -36,4 +36,7 @@ public class BookingBikePresenter {
             }
         });
     }
+
+
+
 }

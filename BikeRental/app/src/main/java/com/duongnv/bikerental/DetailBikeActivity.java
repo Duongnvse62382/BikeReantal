@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
 import com.squareup.picasso.Picasso;
 
@@ -19,6 +20,7 @@ public class DetailBikeActivity extends AppCompatActivity {
     private Button btnRental;
     private Bike bikes;
     private ImageView iconback;
+    private Account mAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,9 @@ public class DetailBikeActivity extends AppCompatActivity {
                 Intent intent = new Intent(DetailBikeActivity.this, BookBikeActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("bikes", bikes);
+                bundle.putSerializable("account", mAccount);
                 intent.putExtras(bundle);
+                finish();
                 startActivity(intent);
             }
         });
@@ -61,8 +65,10 @@ public class DetailBikeActivity extends AppCompatActivity {
     public void getBikePostion(){
         Bundle bundle = getIntent().getExtras();
         bikes = (Bike) bundle.getSerializable("bikes");
+        mAccount = (Account) bundle.getSerializable("account");
         Picasso.get().load(bikes.getImage()).into(imageBike);
         textName.setText(bikes.getBikeName()+ "");
+//        textType.setText(mAccount.getUsername()+ "");
         textType.setText(bikes.getTypeName()+ "");
         textDecription.setText(bikes.getDescription()+ "");
         textPrice.setText(bikes.getPrice()+ "$/day");

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.duongnv.bikerental.adapter.BikeAdapter;
+import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
 import com.duongnv.bikerental.presenter.PrintBikePresenter;
 import com.duongnv.bikerental.views.GetBikeByStoreView;
@@ -21,10 +22,12 @@ import java.util.List;
 public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreView {
 
 
+    private Account mAccount;
     private ImageView iconback;
     private BikeAdapter bikeAdapter;
     private RecyclerView mrecyclerView;
     private List<Bike> listBike;
+    private TextView textStore;
 
     PrintBikePresenter mprintBikePresenter;
 
@@ -34,6 +37,10 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
         setContentView(R.layout.activity_store);
         initView();
         initData();
+
+        Bundle bundle = getIntent().getExtras();
+        mAccount = (Account) bundle.getSerializable("account");
+//        textStore.setText(mAccount.getUsername()+"");
 
         iconback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +52,17 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
 
 
 
+
+
+
+
     }
 
     public void initView(){
         //ánh xạ
         mrecyclerView = findViewById(R.id.listView);
         iconback = findViewById(R.id.iconback);
+        textStore = findViewById(R.id.txtStore);
 
         //set layout cho recyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StoreActivity.this);
@@ -78,6 +90,7 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
                     Intent intent = new Intent(StoreActivity.this, DetailBikeActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("bikes", listBike.get(position));
+                    bundle.putSerializable("account", mAccount);
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }

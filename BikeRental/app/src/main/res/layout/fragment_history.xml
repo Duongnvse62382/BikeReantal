@@ -38,6 +38,17 @@
                 android:gravity="center"
                 android:text="Bạn chưa từng đặt xe trước đây!"/>
 
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </android.support.v7.widget.RecyclerView>
+
+
         </LinearLayout>
 
     </LinearLayout>

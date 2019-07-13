@@ -33,6 +33,7 @@
                 android:src="@drawable/motorbike"
                 android:layout_gravity="center"/>
             <TextView
+                android:id="@+id/txtusername"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -127,21 +128,30 @@
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
                 android:layout_height="100dp"
-                android:src="@drawable/banner2"/>
+                android:src="@drawable/banner7"/>
             <ImageButton
                 android:background="@drawable/ps__button_logobike"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
                 android:layout_height="100dp"
-                android:src="@drawable/banner"/>
+                android:src="@drawable/banner8"/>
             <ImageButton
             android:background="@drawable/ps__button_logobike"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:scaleType="fitXY"
             android:layout_height="100dp"
-            android:src="@drawable/banner3"/>
+            android:src="@drawable/banner6"/>
+
+
+            <ImageButton
+                android:background="@drawable/ps__button_logobike"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                android:layout_height="100dp"
+                android:src="@drawable/banner2"/>
 
         </LinearLayout>
 

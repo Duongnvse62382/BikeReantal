@@ -99,14 +99,56 @@
                android:textStyle="bold" />
        </LinearLayout>
 
-       <LinearLayout
+       <ScrollView
+
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
            android:layout_weight="5"
            android:layout_width="match_parent"
-           android:layout_height="0dp"
-           android:background="@drawable/boder_bg"
-           android:orientation="vertical">
+           android:layout_height="0dp">
 
-       </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+
+
+
+               <ImageButton
+                   android:background="@drawable/ps__button_logobike"
+                   android:layout_marginTop="20dp"
+                   android:layout_width="match_parent"
+                   android:scaleType="fitXY"
+                   android:layout_height="100dp"
+                   android:src="@drawable/banner7"/>
+               <ImageButton
+                   android:background="@drawable/ps__button_logobike"
+                   android:layout_marginTop="20dp"
+                   android:layout_width="match_parent"
+                   android:scaleType="fitXY"
+                   android:layout_height="100dp"
+                   android:src="@drawable/banner8"/>
+               <ImageButton
+                   android:background="@drawable/ps__button_logobike"
+                   android:layout_marginTop="20dp"
+                   android:layout_width="match_parent"
+                   android:scaleType="fitXY"
+                   android:layout_height="100dp"
+                   android:src="@drawable/banner6"/>
+
+
+               <ImageButton
+                   android:background="@drawable/ps__button_logobike"
+                   android:layout_marginTop="20dp"
+                   android:layout_width="match_parent"
+                   android:scaleType="fitXY"
+                   android:layout_height="100dp"
+                   android:src="@drawable/banner2"/>
+
+           </LinearLayout>
+
+
+       </ScrollView>
 
        <LinearLayout
            android:layout_weight="1"

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/logoicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailBikeActivity"></activity>
+        <activity android:name=".PaymentInfoActivity"></activity>
+        <activity android:name=".DetailBikeActivity" />
         <activity android:name=".StoreActivity" />
 
         <meta-data

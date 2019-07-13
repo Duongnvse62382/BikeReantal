@@ -248,7 +248,7 @@ public class ReponsitoryImplement implements Reponsitory{
     //Booking
 
     @Override
-    public void bookingBike(String amount, int slots, int bikeId, String rentalBike, String returnBike, CallBackData callBackData) {
+    public void bookingBike(int amount, int slots, int bikeId, String rentalBike, String returnBike, CallBackData callBackData) {
         ClientAPI clientAPI = new ClientAPI();
 
         JSONObject bookingJsonObject = new JSONObject();
