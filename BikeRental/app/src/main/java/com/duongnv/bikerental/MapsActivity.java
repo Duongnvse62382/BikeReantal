@@ -10,12 +10,15 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -62,6 +65,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Random mRandom = new Random(1984);
     private ImageButton mGps, imageLogo;
     private EditText edtSearch;
+
     private static final String TAG = "MapsActiviti";
     private boolean mLocationPremisstionsGranted = false;
 
@@ -107,19 +111,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Bundle bundle = getIntent().getExtras();
         mAccount = (Account) bundle.getSerializable("account");
-        imageLogo = findViewById(R.id.imageStore);
-        imageLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MapsActivity.this, StoreActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("account", mAccount);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
-
     }
 
 
@@ -143,12 +134,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         geoLocate();
-//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//            @Override
-//            public boolean onMarkerClick(Marker marker) {
-//                return false;
-//            }
-//        });
+
+
+
+
         mGps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,6 +262,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
+
+
+    public void showDialog(){
+        LayoutInflater layoutInflater  =getLayoutInflater();
+        View alertLayout  = layoutInflater.inflate(R.layout.dialog, null);
+        final Button btnGotoStore;
+        btnGotoStore = (Button) alertLayout.findViewById(R.id.btnGotostore);
+        btnGotoStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, StoreActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("account", mAccount);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setView(alertLayout);
+        alert.setCancelable(true);
+        AlertDialog dialog = alert.create();
+        dialog.show();
+
+    }
+
+
     @Override
     public boolean onClusterClick(Cluster<Store> cluster) {
         if (cluster == null) return false;
@@ -282,6 +297,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLngBounds bounds = builder.build();
         try {
             mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -307,10 +324,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         return Arrays.asList(
 
+
                 new Store("Store1", position()),
                 new Store("Store2", position()),
                 new Store("Store3", position()),
-                new Store("Store4", position())
+                new Store("Store4", position()),
+                new Store("Store5", position())
+//                new Store("Store6", position()),
+//                new Store("Store7", position()),
+//                new Store("Store8", position()),
+//                new Store("Store9", position()),
+//                new Store("Store10", position())
         );
     }
 
@@ -321,6 +345,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         googleMap.setOnCameraIdleListener(clusterManager);
         List<Store> items = getItems();
         clusterManager.addItems(items);
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                showDialog();
+                return true;
+            }
+        });
         clusterManager.cluster();
     }
 
@@ -334,7 +365,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private LatLng position() {
-        return new LatLng(random(10.851517, 10.852444), random(106.622769, 106.630914));
+        return new LatLng(random(10.842702, 10.861058), random(106.617169, 106.647742));
     }
 
     private double random(double min, double max) {

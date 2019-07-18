@@ -243,7 +243,6 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
                         }
                     }
                     mLocationPermissionsGranted = true;
-                    //initialize our map
                     initMap();
                 }
             }
@@ -380,8 +379,9 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         String bikerental = etDateRental.getText().toString();
         String bikeRetuen = edtDateReturn.getText().toString();
         int bikeID = bikes.getBikeID();
+        int userID = mAccount.getUserID();
         mbookingBikePresenter =  new BookingBikePresenter(this);
-        mbookingBikePresenter.bookingBike(amount, slot, bikeID, bikerental, bikeRetuen);
+        mbookingBikePresenter.bookingBike(amount, slot, userID, bikeID, bikerental, bikeRetuen);
 
 
     }
@@ -398,9 +398,9 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         bundle.putString("address", textAddress.getText().toString());
         intent.putExtras(bundle);
 
-        startActivity(intent);
         finish();
-        Toast.makeText(BookBikeActivity.this,"ss",Toast.LENGTH_SHORT).show();
+        startActivity(intent);
+
     }
 
 

@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 public class BookingDetails implements Serializable {
 
-    @SerializedName("BikeID")
-    private int bikeID;
+    @SerializedName("BikeName")
+    private String bikeName;
 
     @SerializedName("BentalDate")
     private String rentalBike;
@@ -16,12 +16,12 @@ public class BookingDetails implements Serializable {
     private String returnBike;
 
 
-    public int getBikeID() {
-        return bikeID;
+    public String getBikeName() {
+        return bikeName;
     }
 
-    public void setBikeID(int bikeID) {
-        this.bikeID = bikeID;
+    public void setBikeName(String bikeName) {
+        this.bikeName = bikeName;
     }
 
     public String getRentalBike() {
@@ -38,5 +38,10 @@ public class BookingDetails implements Serializable {
 
     public void setReturnBike(String returnBike) {
         this.returnBike = returnBike;
+    }
+
+    @Override
+    public String toString() {
+        return "BookingDetails [BentalDate=" + rentalBike + ", returnDate=" + returnBike +", BikeName=" + bikeName + "]";
     }
 }

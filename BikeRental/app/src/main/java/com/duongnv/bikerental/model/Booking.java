@@ -3,32 +3,43 @@ package com.duongnv.bikerental.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Booking implements Serializable {
 
+    @SerializedName("BookID")
+    private int bookID;
     @SerializedName("Amount")
-    private float amount;
+    private int amount;
 
     @SerializedName("Slots")
     private int slots;
 
-    public float getAmount() {
+    @SerializedName("UserID")
+    private int userID;
+
+    @SerializedName("BookingDetails")
+    private List<BookingDetails> bookingDetails = new ArrayList<BookingDetails>();
+
+
+
+
+
+
+    public int getBookID() {
+        return bookID;
+    }
+
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
+    }
+
+    public int getAmount() {
         return amount;
     }
 
-    @SerializedName("BookingDetails")
-    private BookingDetails bookingDetails;
-
-
-    public BookingDetails getBookingDetails() {
-        return bookingDetails;
-    }
-
-    public void setBookingDetails(BookingDetails bookingDetails) {
-        this.bookingDetails = bookingDetails;
-    }
-
-    public void setAmount(float amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -38,5 +49,22 @@ public class Booking implements Serializable {
 
     public void setSlots(int slots) {
         this.slots = slots;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public List<BookingDetails> getBookingDetails() {
+        return bookingDetails;
+
+    }
+
+    public void setBookingDetails(List<BookingDetails> bookingDetails) {
+        this.bookingDetails = bookingDetails;
     }
 }

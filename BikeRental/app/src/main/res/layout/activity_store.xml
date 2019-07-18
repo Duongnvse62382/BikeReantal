@@ -63,7 +63,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="9"
-                    android:text="StoreHCM"
+                    android:text="Store-141"
                     android:textStyle="bold"
                     android:textColor="#ffffff"/>
             </LinearLayout>

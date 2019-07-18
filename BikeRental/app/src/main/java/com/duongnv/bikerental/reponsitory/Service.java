@@ -22,6 +22,7 @@ import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETBIKEBYSTORE;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETSTORES;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.UPDATEACCOUNT;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.BOOKINGBIKE;
+import static com.duongnv.bikerental.utils.ConfigAPI.Api.HISTORYBOOK;
 
 public interface Service {
     @POST(CREATEACCOUNT)
@@ -36,10 +37,10 @@ public interface Service {
     );
 
 
-    @GET(CREATEACCOUNT)
-    Call<ResponseBody> getAccount(
-
-    );
+//    @GET(CREATEACCOUNT)
+//    Call<ResponseBody> getAccount(
+//
+//    );
 
     @PUT(UPDATEACCOUNT)
 
@@ -62,5 +63,11 @@ public interface Service {
     @POST(BOOKINGBIKE)
     Call<ResponseBody> bookingPayment(
         @Body RequestBody requestBody
+    );
+
+    //history
+    @GET(HISTORYBOOK)
+    Call<ResponseBody> getHistory(
+            @Query("id") int id
     );
 }

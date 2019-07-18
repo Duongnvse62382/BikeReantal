@@ -1,9 +1,9 @@
 package com.duongnv.bikerental.reponsitory;
 
+
 import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
 import com.duongnv.bikerental.model.Booking;
-import com.duongnv.bikerental.model.BookingDetails;
 import com.duongnv.bikerental.model.Store;
 import com.duongnv.bikerental.utils.CallBackData;
 import com.duongnv.bikerental.utils.ClientAPI;
@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.RequestBody;
@@ -62,37 +61,37 @@ public class ReponsitoryImplement implements Reponsitory{
         });
     }
 
-    @Override
-    public void getAccount(final CallBackData<List<Account>> callBackData) {
-        ClientAPI clientAPI = new ClientAPI();
-        Call<ResponseBody> bodyCall = clientAPI.resoService().getAccount();
-        bodyCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    if(response.code()==200 & response.body()!=null){
-                    String result = null;
-                    try {
-                        result = response.body().string();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Type collectionType = new TypeToken<List<Account>>(){}.getType();
-                    List<Account> lcs = (List<Account>) new Gson()
-                            .fromJson( result , collectionType);
-
-                    callBackData.onSuccess(lcs);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                callBackData.onFail("Username or Password Wrong");
-
-            }
-        });
-
-    }
+//    @Override
+//    public void getAccount(final CallBackData<List<Account>> callBackData) {
+//        ClientAPI clientAPI = new ClientAPI();
+//        Call<ResponseBody> bodyCall = clientAPI.resoService().getAccount();
+//        bodyCall.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                    if(response.code()==200 & response.body()!=null){
+//                    String result = null;
+//                    try {
+//                        result = response.body().string();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Type collectionType = new TypeToken<List<Account>>(){}.getType();
+//                    List<Account> lcs = (List<Account>) new Gson()
+//                            .fromJson( result , collectionType);
+//
+//                    callBackData.onSuccess(lcs);
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                callBackData.onFail("Username or Password Wrong");
+//
+//            }
+//        });
+//
+//    }
 
     @Override
     public void registerAccount(String username, String password, String fullname, String phonenumber, String email, String address, String birtday, int role,final CallBackData<List<Account>> callBackData) {
@@ -248,7 +247,7 @@ public class ReponsitoryImplement implements Reponsitory{
     //Booking
 
     @Override
-    public void bookingBike(int amount, int slots, int bikeId, String rentalBike, String returnBike, CallBackData callBackData) {
+    public void bookingBike(int amount, int slots,int userID ,int bikeId, String rentalBike, String returnBike, CallBackData callBackData) {
         ClientAPI clientAPI = new ClientAPI();
 
         JSONObject bookingJsonObject = new JSONObject();
@@ -263,6 +262,7 @@ public class ReponsitoryImplement implements Reponsitory{
             bookingJsonObject.put("BookingDetails",bookingDetailJsonArray);
             bookingJsonObject.put("Amount", amount);
             bookingJsonObject.put("Slots",slots);
+            bookingJsonObject.put("UserId", userID);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -292,6 +292,45 @@ public class ReponsitoryImplement implements Reponsitory{
                 callBackData.onFail("Booking fail");
             }
         });
+    }
+
+
+
+    @Override
+    public void getHistoryBook(int id, CallBackData<List<Booking>> callBackData) {
+        ClientAPI clientAPI = new ClientAPI();
+        Call<ResponseBody> bodyCall = clientAPI.resoService().getHistory(id);
+        bodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if(response.code()==200 & response.body()!=null){
+                    String result = null;
+                    try {
+                        result = response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Type collectionType = new TypeToken<List<Booking>>(){}.getType();
+                    List<Booking> lcs = (List<Booking>) new Gson()
+                            .fromJson( result , collectionType);
+
+                    callBackData.onSuccess(lcs);
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callBackData.onFail("fail");
+
+            }
+        });
+
+
     }
 
 

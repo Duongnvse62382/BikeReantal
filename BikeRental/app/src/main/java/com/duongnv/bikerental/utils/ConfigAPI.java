@@ -10,6 +10,7 @@ public class ConfigAPI {
         String UPDATEACCOUNT = "Accounts";
         String CREATEACCOUNT = "Accounts";
         String BOOKINGBIKE = "Bookings";
+        String HISTORYBOOK = "Bookings/id";
     }
 
     //đường dẫn API

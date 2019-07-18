@@ -71,19 +71,6 @@
         android:src="@drawable/ic_gsp" />
 
 
-    <ImageButton
-        android:id="@+id/imageStore"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/relayout1"
-        android:layout_alignParentRight="true"
-        android:scaleType="fitXY"
-        android:layout_marginLeft="361dp"
-        android:layout_marginTop="185dp"
-        android:layout_marginRight="182dp"
-        android:layout_marginBottom="-225dp"
-        android:background="@drawable/circle_bt"
-        android:src="@drawable/logobike" />
 
 
 
