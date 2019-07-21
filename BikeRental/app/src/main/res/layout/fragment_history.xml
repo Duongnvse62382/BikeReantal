@@ -10,29 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_weight="1.5"
+        <LinearLayout
+            android:gravity="center"
+            android:background="@drawable/boder_bg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/boder_bg"
-            android:gravity="center"
-            android:text="History"
-            android:textColor="#000000"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:layout_weight="1.5">
+            <ImageView
+                android:tint="@color/colorGreen"
+                android:layout_gravity="center"
+                android:src="@drawable/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <LinearLayout
             android:layout_weight="8.5"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_gravity="center"
-                android:background="@drawable/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <TextView
+                android:paddingTop="20dp"
                 android:id="@+id/txtHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,7 +39,6 @@
                     android:text="You have never booked a Bike before!"/>
 
             <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/listhistory"

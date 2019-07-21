@@ -88,7 +88,7 @@ public class HistoryFragment extends Fragment implements HistoryBookingView {
                bookingDetails.add(details);
         }
         if(list.size() > 0){
-            textHistory.setText("The Bike You rentaled");
+            textHistory.setText("");
         }
         updateViewHistory();
     }

@@ -65,7 +65,7 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
     private TextView textSumDay, textFullname, textPhoneNo, textTotalPrice, textAddress;
     private EditText etDateRental, edtDateReturn;
     private int mYear, mMonth, mDay;
-    private ImageView btnDateRental, btndateRuturn;
+    private ImageView btndateRuturn;
     Calendar calendarRental, calendarReturn;
     private ImageView iconback;
     SimpleDateFormat simpleDateFormat;
@@ -78,7 +78,6 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         setContentView(R.layout.activity_book_bike);
         etDateRental = findViewById(R.id.editDate);
         iconback = findViewById(R.id.iconback);
-        btnDateRental = findViewById(R.id.btnDateRental);
         btndateRuturn = findViewById(R.id.btnDatereturn);
         edtDateReturn = findViewById(R.id.editDateReturn);
         textSumDay = findViewById(R.id.txtTotal);
@@ -103,12 +102,9 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
             }
         });
 
-        btnDateRental.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDateRental();
-            }
-        });
+
+        calendarRental = Calendar.getInstance();
+        etDateRental.setText(simpleDateFormat.format(calendarRental.getTime()));
 
         btndateRuturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,27 +288,6 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
     }
 
 
-    public void getDateRental(){
-        calendarRental = Calendar.getInstance();
-        mDay = calendarRental.get(Calendar.DATE);
-        mMonth = calendarRental.get(Calendar.MONTH);
-        mYear = calendarRental.get(Calendar.YEAR);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet (DatePicker view, int dayOfMonth,
-                                          int monthOfYear, int year)  {
-                        calendarRental.set(dayOfMonth , monthOfYear, year);
-
-                        etDateRental.setText(simpleDateFormat.format(calendarRental.getTime()));
-
-                    }
-                }, mYear, mMonth, mDay);
-        datePickerDialog.show();
-
-    }
-
     public void getDateReturn(){
         calendarReturn = Calendar.getInstance();
         mDay = calendarReturn.get(Calendar.DATE);
@@ -346,7 +321,7 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
     public boolean validDate(){
         String dateRental = etDateRental.getText().toString().trim();
         if(dateRental.isEmpty()){
-            Toast.makeText(BookBikeActivity.this, "Please choose Date", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookBikeActivity.this, "Please choose Time", Toast.LENGTH_SHORT).show();
             return false;
         }
         else {
@@ -357,7 +332,7 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
     public boolean validDateReturn(){
         String dateReturn = edtDateReturn.getText().toString().trim();
         if(dateReturn.isEmpty()){
-            Toast.makeText(BookBikeActivity.this, "Please choose Date", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookBikeActivity.this, "Please choose Time", Toast.LENGTH_SHORT).show();
             return false;
         }
         else {

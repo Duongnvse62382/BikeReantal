@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_weight="8"
-                android:hint="Search for a destination"
+                android:hint="Search for address"
                 android:imeOptions="actionSearch"
                 android:inputType="text" />
 

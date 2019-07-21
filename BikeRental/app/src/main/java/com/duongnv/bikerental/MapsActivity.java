@@ -330,7 +330,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new Store("Store3", position()),
                 new Store("Store4", position()),
                 new Store("Store5", position())
-//                new Store("Store6", position()),
 //                new Store("Store7", position()),
 //                new Store("Store8", position()),
 //                new Store("Store9", position()),

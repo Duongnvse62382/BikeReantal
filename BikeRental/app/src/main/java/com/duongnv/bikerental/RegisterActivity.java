@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.duongnv.bikerental.presenter.RegisterAccountPresenter;
@@ -19,7 +20,6 @@ import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity implements InsertAccountView {
 
-    private Toolbar mToolbar;
     RegisterAccountPresenter mRegisterAccountPresenter;
     private Button btnDatePicker;
     private EditText etDate;
@@ -28,6 +28,10 @@ public class RegisterActivity extends AppCompatActivity implements InsertAccount
     private String username, password, fullname, email, phone, address;
     String birthDay;
     int role;
+
+    private ImageView iconback;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +45,19 @@ public class RegisterActivity extends AppCompatActivity implements InsertAccount
         edtEmail = findViewById(R.id.editEmail);
         edtFullname = findViewById(R.id.editFullname);
         edtAddress = findViewById(R.id.editAddress);
-        mToolbar = findViewById(R.id.toolbar_register);
-        setSupportActionBar(mToolbar);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        iconback = findViewById(R.id.iconback);
+
+        iconback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+
+
+
+
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

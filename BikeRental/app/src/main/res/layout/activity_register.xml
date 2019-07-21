@@ -8,16 +8,34 @@
     android:orientation="vertical"
     tools:context=".RegisterActivity">
 
- <android.support.v7.widget.Toolbar
-     android:id="@+id/toolbar_register"
-     app:title="Register"
-     app:titleTextColor="#ffffff"
-     android:background="#47E017"
-     app:navigationIcon="@drawable/iconback"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
- </android.support.v7.widget.Toolbar>
+        <ImageView
+            android:id="@+id/iconback"
+            android:paddingLeft="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/iconback"
+            />
+
+        <TextView
+            android:gravity="center"
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="#070707"
+            android:text="Register"
+            android:textSize="20dp"
+            android:textStyle="italic"
+            />
+
+    </LinearLayout>
     <TextView
 
         android:layout_marginBottom="10dp"

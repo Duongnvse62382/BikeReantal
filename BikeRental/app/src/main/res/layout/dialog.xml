@@ -5,10 +5,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:id="@+id/dialog"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:weightSum="10">
     <LinearLayout
-        android:layout_weight="5"
+        android:layout_weight="4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="10"
@@ -56,11 +56,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3">
-        <RatingBar
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:weightSum="2">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+            <TextView
 
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                android:text="4.5"/>
+
+        </LinearLayout>
+        <RatingBar
             android:isIndicator="true"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="center"
             android:rating="4.5"
             android:id="@+id/simpleRatingBar"
@@ -71,7 +85,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_weight="4">
         <Button
             android:layout_gravity="center"
             android:textStyle="bold"

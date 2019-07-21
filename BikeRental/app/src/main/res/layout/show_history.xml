@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/containerHistory"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="100dp"
     android:orientation="vertical"
     android:weightSum="10">
     <LinearLayout
@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4">
+            android:layout_weight="3">
 
             <ImageView
                 android:src="@drawable/motorbike"
@@ -33,8 +33,8 @@
 
         <LinearLayout
             android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:layout_weight="6"
+            android:paddingBottom="10dp"
+            android:layout_weight="7"
             android:layout_width="0dp"
             android:orientation="vertical"
             android:layout_height="match_parent"
@@ -60,7 +60,8 @@
                     android:layout_height="match_parent"></LinearLayout>
 
                 <TextView
-                    android:paddingTop="15dp"
+                    android:paddingTop="2dp"
+                    android:textSize="10dp"
                     android:id="@+id/txtNamebike"
                     android:layout_weight="3.3"
                     android:layout_width="0dp"
@@ -93,11 +94,12 @@
                 </LinearLayout>
 
                 <TextView
+                    android:paddingTop="2dp"
                     android:id="@+id/dayrental"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3.3"
-                    android:paddingTop="8dp"
+                    android:textSize="10dp"
                     android:text="2019/07/10"
                     android:textColor="#000000"
                     android:textStyle="bold" />
@@ -110,14 +112,14 @@
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 android:weightSum="5">
+
                 <TextView
-                    android:gravity="end"
-                    android:layout_weight="1.5"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:textStyle="bold"
+                    android:layout_weight="1.5"
                     android:drawableRight="@drawable/right"
-                    />
+                    android:gravity="end"
+                    android:textStyle="bold" />
                 <LinearLayout
                     android:layout_weight="0.2"
                     android:layout_width="0dp"
@@ -126,7 +128,8 @@
                 </LinearLayout>
 
                 <TextView
-                    android:paddingTop="8dp"
+                    android:paddingTop="2dp"
+                    android:textSize="10dp"
                     android:id="@+id/dayreturn"
                     android:layout_weight="3.3"
                     android:layout_width="0dp"

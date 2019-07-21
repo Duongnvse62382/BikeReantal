@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textColor="#070707"
-            android:text="Payment"
+            android:text=""
             android:textSize="20dp"
             android:textStyle="italic"
             />
@@ -229,7 +229,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="Choose Time Rental:"
+            android:text="Choose Time:"
             android:textStyle="bold"
             android:textColor="#000000"/>
         <LinearLayout
@@ -246,12 +246,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
-            <ImageView
-                android:layout_weight="1.5"
-                android:id="@+id/btnDateRental"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/calendar" />
+            <!--<ImageView-->
+                <!--android:layout_weight="1.5"-->
+                <!--android:id="@+id/btnDateRental"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/calendar" />-->
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="0dp"
