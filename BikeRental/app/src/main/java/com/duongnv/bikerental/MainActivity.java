@@ -1,6 +1,9 @@
 package com.duongnv.bikerental;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements LoginAccountView 
         setContentView(R.layout.activity_main);
         edtUserName = findViewById(R.id.editUsername);
         edtPassword = findViewById(R.id.editPassword);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel chanel =
+                    new NotificationChannel("MyNotifications", "MyNotifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(chanel);
+        }
+
 //        btnLogin = findViewById(R.id.login_button);
 
 //        callbackManager = CallbackManager.Factory.create();

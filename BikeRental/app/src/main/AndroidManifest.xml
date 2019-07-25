@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/logoicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PaymentInfoActivity"></activity>
+        <activity android:name=".BookingCartActivity"></activity>
+        <activity android:name=".HeartActivity" />
+        <activity android:name=".PaymentInfoActivity" />
         <activity android:name=".DetailBikeActivity" />
         <activity android:name=".StoreActivity" />
 
@@ -56,6 +58,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".clusterRenderer.MessageService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

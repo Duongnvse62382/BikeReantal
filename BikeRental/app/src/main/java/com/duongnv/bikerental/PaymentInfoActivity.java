@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
 import com.squareup.picasso.Picasso;
 
 public class PaymentInfoActivity extends AppCompatActivity {
 
 
+    private Account mAccount;
     private Bike bike;
     private int total;
     private String rental, returnbike, address;
@@ -36,10 +38,12 @@ public class PaymentInfoActivity extends AppCompatActivity {
         imagecancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                Intent intent = new Intent(PaymentInfoActivity.this, MapsActivity.class);
-                finish();
+//
+//                Intent intent = new Intent(PaymentInfoActivity.this, StoreActivity.class);
+//                Bundle bundle  = new Bundle();
+//                bundle.putSerializable("account", mAccount);
 //                startActivity(intent);
+                finish();
             }
         });
 
@@ -48,6 +52,7 @@ public class PaymentInfoActivity extends AppCompatActivity {
 
     public void showInfo(){
         Bundle bundle = getIntent().getExtras();
+        mAccount = (Account) bundle.getSerializable("account") ;
         bike = (Bike) bundle.getSerializable("bikepm");
         total = (int) bundle.getInt("total");
         rental = (String) bundle.getString("rental");

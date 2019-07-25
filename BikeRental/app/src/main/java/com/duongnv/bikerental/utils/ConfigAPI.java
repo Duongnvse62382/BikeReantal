@@ -11,6 +11,8 @@ public class ConfigAPI {
         String CREATEACCOUNT = "Accounts";
         String BOOKINGBIKE = "Bookings";
         String HISTORYBOOK = "Bookings/id";
+
+        String STATUS = "Bikes";
     }
 
     //đường dẫn API

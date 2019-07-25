@@ -67,7 +67,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private EditText edtSearch;
 
     private static final String TAG = "MapsActiviti";
-    private boolean mLocationPremisstionsGranted = false;
+
 
 
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -76,6 +76,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final float DEFAULT_ZOOM = 16f;
 
     private FusedLocationProviderClient mfusedLocationProviderClient;
+    private boolean mLocationPremisstionsGranted = false;
     private GoogleMap mMap;
 
     private List<Store> stores;

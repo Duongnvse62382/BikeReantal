@@ -38,22 +38,34 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.ViewHolderBike
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderBike viewHolderBike, int i) {
-        viewHolderBike.txtBikeName.setText(bikeList.get(i).getBikeName());
-        viewHolderBike.txtTypeName.setText(bikeList.get(i).getTypeName());
-        viewHolderBike.txtprice.setText(bikeList.get(i).getPrice()+ " $/day");
-        Picasso.get().load(bikeList.get(i).getImage()).into(viewHolderBike.imageBike);
-        viewHolderBike.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onClickIteam!= null){
-                    onClickIteam.getPosition(i);
+        if(bikeList.get(i).getStatus() == 1){
+            viewHolderBike.txtBikeName.setText(bikeList.get(i).getBikeName());
+            viewHolderBike.txtTypeName.setText(bikeList.get(i).getTypeName());
+            viewHolderBike.txtprice.setText(bikeList.get(i).getPrice()+ " $/day");
+            Picasso.get().load(bikeList.get(i).getImage()).into(viewHolderBike.imageBike);
+            viewHolderBike.container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onClickIteam!= null){
+                            onClickIteam.getPosition(i);
+                    }
                 }
-            }
-        });
+            });
+        }
+        else{
+            viewHolderBike.txtBikeName.setText(" Rented Bike");
+            viewHolderBike.txtTypeName.setText(" Rented Bike");
+            viewHolderBike.txtprice.setText(" Rented Bike");
+            Picasso.get().load(bikeList.get(i).getImage()).into(viewHolderBike.imageBike);
+        }
+
     }
 
     public void  OnItemClick(OnClickIteam onClickIteam) {
         this.onClickIteam = onClickIteam;
+    }
+    public interface OnClickIteam{
+        void  getPosition(int position);
     }
 
     @Override
@@ -79,7 +91,5 @@ public class BikeAdapter extends RecyclerView.Adapter<BikeAdapter.ViewHolderBike
         }
     }
 
-    public interface OnClickIteam{
-        void  getPosition(int position);
-    }
+
 }

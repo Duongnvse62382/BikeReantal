@@ -210,6 +210,48 @@ public class ReponsitoryImplement implements Reponsitory{
 
     }
 
+    @Override
+    public void updateStatusBike(int bikeID, String bikeName, String image, String decription, String price, int status, int typeID, int storeID, CallBackData<Bike> callBackData) {
+
+        ClientAPI clientAPI = new ClientAPI();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("BikeID", bikeID);
+            jsonObject.put("BikeName", bikeName);
+            jsonObject.put("Image", image);
+            jsonObject.put("Description", decription);
+            jsonObject.put("Price", price);
+            jsonObject.put("Status", status);
+            jsonObject.put("TypeID", typeID);
+            jsonObject.put("StoreID", storeID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=urf-8"), jsonObject.toString());
+        Call<ResponseBody> bodyCall = clientAPI.resoService().updateStatus(bikeID, requestBody);
+        bodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                if(response.code() == 200 & response.body() != null){
+                    try {
+                        result =  response.body().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    callBackData.onSuccessString("update ss");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                callBackData.onFail("fail");
+            }
+        });
+    }
+
 
     //STORE
 

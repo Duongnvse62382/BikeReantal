@@ -35,12 +35,11 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+        bundelAccount();
         initView();
         initData();
 
-        Bundle bundle = getIntent().getExtras();
-        mAccount = (Account) bundle.getSerializable("account");
-//        textStore.setText(mAccount.getUsername()+"");
+
 
         iconback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +57,19 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
 
     }
 
+    @Override
+    protected void onResume() {
+        mprintBikePresenter.getBikeByStore();
+        super.onResume();
+
+
+    }
+
+    public void bundelAccount(){
+        Bundle bundle = getIntent().getExtras();
+        mAccount = (Account) bundle.getSerializable("account");
+    }
+
     public void initView(){
         //ánh xạ
         mrecyclerView = findViewById(R.id.listView);
@@ -68,15 +80,13 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StoreActivity.this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mrecyclerView.setLayoutManager(linearLayoutManager);
+        mprintBikePresenter = new PrintBikePresenter(this);
+
 
     }
 
     public void initData(){
-        listBike = new ArrayList<>();
-        mprintBikePresenter = new PrintBikePresenter(this);
         mprintBikePresenter.getBikeByStore();
-
-
     }
 
 
@@ -95,6 +105,8 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
                     startActivity(intent);
                 }
             });
+
+
         }
         else{
             bikeAdapter.notifyDataSetChanged();
@@ -103,13 +115,23 @@ public class StoreActivity extends AppCompatActivity  implements GetBikeByStoreV
 
     @Override
     public void getBikeSS(List<Bike> list) {
+        listBike = new ArrayList<>();
         listBike = list;
         updateViewBike();
+
 
     }
 
     @Override
     public void getBikeFail(String message) {
 
+    }
+
+    public void ClickToHeartAc(View view) {
+        Intent intent = new Intent(StoreActivity.this, HeartActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("account", mAccount);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

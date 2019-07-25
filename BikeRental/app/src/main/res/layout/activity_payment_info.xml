@@ -76,7 +76,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:textColor="#000000"
-            android:text="Payment Complete"/>
+            android:text="Rental Complete"/>
 
         <TextView
             android:layout_width="match_parent"

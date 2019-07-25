@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "702977930228",
+    "firebase_url": "https://bikerentalnetwork.firebaseio.com",
+    "project_id": "bikerentalnetwork",
+    "storage_bucket": "bikerentalnetwork.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702977930228:android:d8d6d2230ad9c4d0",
+        "android_client_info": {
+          "package_name": "com.duongnv.bikerental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702977930228-fc4u0qvva29u0mehgp964kg6h8qrenu7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaePJ-GWcKRv2TYJc_bQFbxTurg0dbSjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702977930228-fc4u0qvva29u0mehgp964kg6h8qrenu7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

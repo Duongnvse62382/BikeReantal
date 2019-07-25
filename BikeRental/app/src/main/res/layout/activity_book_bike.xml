@@ -246,12 +246,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
-            <!--<ImageView-->
-                <!--android:layout_weight="1.5"-->
-                <!--android:id="@+id/btnDateRental"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/calendar" />-->
+            <ImageView
+                android:layout_weight="1.5"
+                android:id="@+id/btnDateRental"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/calendar" />
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="0dp"

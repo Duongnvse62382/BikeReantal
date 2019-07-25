@@ -30,6 +30,12 @@ public class Bike implements Serializable {
     @SerializedName("Status")
     int status;
 
+    @SerializedName("TypeID")
+    int typeID;
+
+    @SerializedName("StoreID")
+    int storeID;
+
     public String getPrice() {
         return price;
     }
@@ -92,5 +98,22 @@ public class Bike implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+
+    public int getTypeID() {
+        return typeID;
+    }
+
+    public void setTypeID(int typeID) {
+        this.typeID = typeID;
+    }
+
+    public int getStoreID() {
+        return storeID;
+    }
+
+    public void setStoreID(int storeID) {
+        this.storeID = storeID;
     }
 }

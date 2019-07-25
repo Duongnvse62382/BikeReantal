@@ -24,7 +24,9 @@ import android.widget.Toast;
 import com.duongnv.bikerental.model.Account;
 import com.duongnv.bikerental.model.Bike;
 import com.duongnv.bikerental.presenter.BookingBikePresenter;
+import com.duongnv.bikerental.presenter.UpdateStatusBikePresenter;
 import com.duongnv.bikerental.views.BookingBikeView;
+import com.duongnv.bikerental.views.UpdateStatusBikeView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,10 +45,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class BookBikeActivity extends AppCompatActivity  implements BookingBikeView, OnMapReadyCallback  {
+public class BookBikeActivity extends AppCompatActivity  implements BookingBikeView, OnMapReadyCallback, UpdateStatusBikeView {
 
 
-    private static final String TAG = "BookBikeActivity";
 
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -60,16 +61,18 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
 
 
     private BookingBikePresenter mbookingBikePresenter;
+    private UpdateStatusBikePresenter mupdateStatusBikePresenter;
     private Bike bikes;
     private Account mAccount;
     private TextView textSumDay, textFullname, textPhoneNo, textTotalPrice, textAddress;
     private EditText etDateRental, edtDateReturn;
     private int mYear, mMonth, mDay;
-    private ImageView btndateRuturn;
+    private ImageView btndateRuturn, btndateRental;
     Calendar calendarRental, calendarReturn;
     private ImageView iconback;
     SimpleDateFormat simpleDateFormat;
     private GoogleMap mmap;
+
 
 
     @Override
@@ -78,8 +81,13 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         setContentView(R.layout.activity_book_bike);
         etDateRental = findViewById(R.id.editDate);
         iconback = findViewById(R.id.iconback);
+
         btndateRuturn = findViewById(R.id.btnDatereturn);
+        btndateRental = findViewById(R.id.btnDateRental);
+
         edtDateReturn = findViewById(R.id.editDateReturn);
+
+
         textSumDay = findViewById(R.id.txtTotal);
         textTotalPrice = findViewById(R.id.txtTotalPrice);
 //        imagebike = findViewById(R.id.imageBikeb);
@@ -103,8 +111,15 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         });
 
 
-        calendarRental = Calendar.getInstance();
-        etDateRental.setText(simpleDateFormat.format(calendarRental.getTime()));
+//        calendarRental = Calendar.getInstance();
+//        etDateRental.setText(simpleDateFormat.format(calendarRental.getTime()));
+
+        btndateRental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDaterental();
+            }
+        });
 
         btndateRuturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,6 +303,31 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
     }
 
 
+    public void getDaterental(){
+        calendarRental = Calendar.getInstance();
+        mDay = calendarRental.get(Calendar.DATE);
+        mMonth = calendarRental.get(Calendar.MONTH);
+        mYear = calendarRental.get(Calendar.YEAR);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int dayOfMonth,
+                                          int monthOfYear, int year) {
+                        calendarRental.set(dayOfMonth , monthOfYear, year);
+
+                        etDateRental.setText(simpleDateFormat.format(calendarRental.getTime()));
+
+                    }
+
+                }, mYear, mMonth, mDay);
+
+
+        datePickerDialog.show();
+
+
+    }
+
     public void getDateReturn(){
         calendarReturn = Calendar.getInstance();
         mDay = calendarReturn.get(Calendar.DATE);
@@ -347,8 +387,9 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         }
 
         BikeInfo();
-//        String amount = textTotalPrice.getText().toString();
-//        int slot = Integer.parseInt(textSumDay.getText().toString());
+
+
+        int status = 0;
         int amount = totalPrice;
         int slot = sum;
         String bikerental = etDateRental.getText().toString();
@@ -357,6 +398,8 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         int userID = mAccount.getUserID();
         mbookingBikePresenter =  new BookingBikePresenter(this);
         mbookingBikePresenter.bookingBike(amount, slot, userID, bikeID, bikerental, bikeRetuen);
+        mupdateStatusBikePresenter = new UpdateStatusBikePresenter(this);
+        mupdateStatusBikePresenter.updateStatusBike(bikes.getBikeID(), bikes.getBikeName(), bikes.getImage(), bikes.getDescription(), bikes.getPrice(), status, 1, 5);
 
 
     }
@@ -367,6 +410,7 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
         Intent intent =  new Intent(BookBikeActivity.this, PaymentInfoActivity.class);
         Bundle bundle  = new Bundle();
         bundle.putSerializable("bikepm", bikes);
+        bundle.putSerializable("account", mAccount);
         bundle.putInt("total", totalPrice);
         bundle.putString("rental", etDateRental.getText().toString());
         bundle.putString("return", edtDateReturn.getText().toString());
@@ -386,5 +430,15 @@ public class BookBikeActivity extends AppCompatActivity  implements BookingBikeV
 
     }
 
+
+    @Override
+    public void updateSS(String message) {
+
+    }
+
+    @Override
+    public void updateFail(String massage) {
+
+    }
 
 }

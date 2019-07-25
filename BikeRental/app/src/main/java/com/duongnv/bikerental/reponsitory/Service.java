@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -20,6 +21,7 @@ import static com.duongnv.bikerental.utils.ConfigAPI.Api.LOGINACCOUNT;
 
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETBIKEBYSTORE;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.GETSTORES;
+import static com.duongnv.bikerental.utils.ConfigAPI.Api.STATUS;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.UPDATEACCOUNT;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.BOOKINGBIKE;
 import static com.duongnv.bikerental.utils.ConfigAPI.Api.HISTORYBOOK;
@@ -46,6 +48,16 @@ public interface Service {
 
     Call<ResponseBody> updateAccount(
             @Path("username") String username,
+            @Body RequestBody requestBody
+    );
+
+    //
+
+    @PUT(STATUS)
+    @Headers("Content-Type:application/json")
+
+    Call<ResponseBody> updateStatus(
+            @Query("id") int id,
             @Body RequestBody requestBody
     );
 

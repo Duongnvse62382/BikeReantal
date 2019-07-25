@@ -46,4 +46,13 @@ dependencies {
     //gif
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
 
+    implementation 'android.arch.persistence.room:runtime:1.1.0'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.0'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
+
+    //fisebase
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+
 }
+apply plugin: 'com.google.gms.google-services'

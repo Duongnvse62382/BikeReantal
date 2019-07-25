@@ -18,6 +18,8 @@ public interface Reponsitory {
     void updateAccount(int userId, String username, String password, String fullname, String phonenumber, String email, String address, String birtday, int role,CallBackData<List<Account>> callBackData);
     void getBikeByStore(CallBackData<List<Bike>> callBackData);
 
+    void updateStatusBike(int bikeID, String bikeName, String image, String decription, String price, int status, int typeID, int storeID, CallBackData<Bike> callBackData);
+
     void getStore(CallBackData<List<Store>> callBackData);
 
     void bookingBike(int amount, int slots, int userID, int bikeId, String rentalBike, String returnBike, CallBackData callBackData);

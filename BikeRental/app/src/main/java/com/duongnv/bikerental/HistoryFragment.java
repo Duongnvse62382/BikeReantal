@@ -64,6 +64,14 @@ public class HistoryFragment extends Fragment implements HistoryBookingView {
     }
 
 
+    @Override
+     public  final  void onResume() {
+
+        mHistoryBookingPresenter.getHistoryBooking(mAccount.getUserID());
+        super.onResume();
+
+    }
+
     public void updateViewHistory(){
         if(historyAdapter == null){
             historyAdapter = new HistoryAdapter(getContext() ,bookingDetails);
